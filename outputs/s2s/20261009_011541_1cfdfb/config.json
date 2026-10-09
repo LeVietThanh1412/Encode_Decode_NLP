@@ -1,0 +1,21 @@
+{
+  "seed": 42,
+  "max_train_samples": 5000,
+  "max_validation_samples": 500,
+  "max_test_samples": 500,
+  "validation_fraction": 0.05,
+  "max_src_tokens": 50,
+  "max_tgt_tokens": 50,
+  "src_vocab_size": 12000,
+  "tgt_vocab_size": 12000,
+  "min_freq": 2,
+  "embedding_dim": 128,
+  "hidden_dim": 128,
+  "dropout": 0.2,
+  "batch_size": 32,
+  "epochs": 5,
+  "learning_rate": 0.001,
+  "gradient_clip": 1.0,
+  "patience": 3,
+  "cpu_threads": 4
+}

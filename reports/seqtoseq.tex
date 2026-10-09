@@ -1,0 +1,135 @@
+% Bien dich doc lap: xelatex -interaction=nonstopmode seqtoseq.tex (hai lan)
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{amsmath,amssymb,booktabs,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\renewcommand{\abstractname}{Tóm tắt}
+\renewcommand{\contentsname}{Mục lục}
+\renewcommand{\tablename}{Bảng}
+\renewcommand{\refname}{Tài liệu tham khảo}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Báo cáo: Sequence-to-sequence}
+\fancyhead[R]{RNN, attention, Transformer}
+\fancyfoot[C]{\thepage}
+\renewcommand{\arraystretch}{1.2}
+\title{\textbf{Encoder--decoder cho dữ liệu chuỗi}\\\large Seq2seq, attention và Transformer}
+\author{Tài liệu lý thuyết gắn với notebook của dự án}
+\date{08/10/2026}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Báo cáo khảo sát cách một mạng encoder--decoder biến chuỗi nguồn thành chuỗi đích có độ dài khác. Tài liệu đi từ RNN seq2seq dùng một vector ngữ cảnh đến attention và Transformer, đồng thời giải thích dịch phải nhãn đích, teacher forcing, mask, hàm mất mát và suy luận tự hồi quy. Ví dụ câu dịch chỉ dùng để theo dõi luồng dữ liệu; dự án hiện chưa huấn luyện một mô hình dịch máy.
+\end{abstract}
+\tableofcontents
+
+\section{Định nghĩa bài toán}
+Cho chuỗi nguồn $x=(x_1,\ldots,x_T)$ và chuỗi đích $y=(y_1,\ldots,y_U)$, ta muốn ước lượng phân phối có điều kiện
+\begin{equation}
+P(y\mid x)=\prod_{t=1}^{U+1}P(y_t\mid y_{<t},x),
+\end{equation}
+trong đó $y_{U+1}=\langle\mathrm{EOS}\rangle$ đánh dấu kết thúc. Độ dài $T$ và $U$ không cần bằng nhau. Ví dụ nhiệm vụ gồm dịch máy, tóm tắt và chuẩn hóa văn bản. Encoder đọc nguồn; decoder tạo phân phối cho mỗi token đích.
+
+Đầu vào văn bản phải được tách thành token theo một quy tắc nhất quán và ánh xạ thành ID. $\langle\mathrm{BOS}\rangle$ khởi động decoder, $\langle\mathrm{EOS}\rangle$ báo dừng, $\langle\mathrm{PAD}\rangle$ làm các chuỗi trong batch có cùng độ dài. PAD không phải một từ cần dự đoán; vị trí PAD phải được loại khỏi loss, và khi cần khỏi attention.
+
+\section{RNN encoder--decoder cơ bản}
+\subsection{Encoder đọc lần lượt chuỗi nguồn}
+Gọi $E_s[x_t]\in\mathbb R^d$ là embedding của token thứ $t$. RNN đơn giản tính
+\begin{equation}
+h_t=\tanh\bigl(E_s[x_t]W_x+h_{t-1}W_h+b_h\bigr),\quad h_0=0.
+\end{equation}
+Trạng thái cuối $c=h_T$ tóm lược nguồn. Encoder được dùng lặp lại theo thời gian với cùng bộ trọng số; không phải mỗi vị trí một mạng riêng. Mô hình LSTM seq2seq của Sutskever, Vinyals và Le dùng cơ chế trạng thái khác RNN $\tanh$ đơn giản, nhưng vẫn theo nguyên tắc mã hóa chuỗi rồi giải mã chuỗi~\cite{sutskever2014}.
+
+\subsection{Decoder sinh token}
+Một dạng RNN decoder minh họa là
+\begin{align}
+s_0&=c,\\
+s_t&=\tanh\bigl(E_t[\tilde y_{t-1}]U_x+s_{t-1}U_h+b_s\bigr),\\
+P(y_t=j\mid y_{<t},x)&=\operatorname{softmax}(s_tW_o+b_o)_j.
+\end{align}
+$\tilde y_0=\langle\mathrm{BOS}\rangle$. Trong huấn luyện teacher forcing, $\tilde y_{t-1}$ là token đúng ở bước trước; khi suy luận, nó là token do mô hình vừa chọn. LSTM còn có cell state, nên không thể mô tả đầy đủ LSTM chỉ bằng một phương trình hidden state như trên.
+
+\subsection{Ví dụ dịch phải chuỗi đích}
+Xét nguồn ``tôi yêu mèo'' và đích minh họa ``i love cats''. Bảng sau là cặp đầu vào--nhãn để giải thích, \emph{không phải đầu ra từ mô hình đã huấn luyện}.
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{clll}\toprule
+Bước & Decoder input khi train & Nhãn cần đoán & Input khi suy luận\\\midrule
+1 & $\langle\mathrm{BOS}\rangle$ & i & $\langle\mathrm{BOS}\rangle$\\
+2 & i thật & love & Token dự đoán ở bước 1\\
+3 & love thật & cats & Token dự đoán ở bước 2\\
+4 & cats thật & $\langle\mathrm{EOS}\rangle$ & Token dự đoán ở bước 3\\\bottomrule
+\end{tabular}
+\caption{Chuỗi đầu vào decoder được dịch phải một vị trí so với nhãn.}
+\end{table}
+Nếu đưa chính token $y_t$ vào decoder ở bước cần dự đoán $y_t$, mô hình nhìn thấy đáp án và phép đánh giá bị rò rỉ.
+
+\section{Loss, lan truyền ngược và suy luận}
+Với $N$ chuỗi đích, đặt $m_{i,t}=1$ nếu token thứ $t$ của mẫu $i$ hợp lệ, ngược lại bằng $0$ nếu là PAD. Tổng số token hợp lệ $M=\sum_{i,t}m_{i,t}$. Cross-entropy chuẩn hóa theo số token là
+\begin{equation}
+\mathcal L=-\frac1M\sum_{i,t}m_{i,t}\log P_{\theta,\phi}(y^*_{i,t}\mid y^*_{i,<t},x_i).
+\end{equation}
+Lan truyền ngược qua thời gian (backpropagation through time) cộng ảnh hưởng của một tham số RNN ở mọi bước mà nó được dùng. Gradient của loss từ decoder có thể đi về trạng thái $c$ và tiếp tục cập nhật encoder. Khi chuỗi dài, đường truyền này khó tối ưu; LSTM/GRU và attention là những hướng xử lý, nhưng không bảo đảm loại bỏ mọi lỗi.
+
+Khi suy luận, mô hình không biết nhãn thật. Greedy decoding chọn $\arg\max_j P(y_t=j\mid y_{<t},x)$ tại từng bước và dừng khi gặp EOS hoặc đạt độ dài tối đa. Beam search giữ nhiều tiền tố ứng viên và so sánh điểm tích lũy, nhưng cũng chỉ là tìm kiếm xấp xỉ và cần quy tắc xử lý độ dài. Teacher forcing tạo sự khác biệt phân phối đầu vào giữa train và suy luận: một lỗi sớm có thể ảnh hưởng nhiều token về sau.
+
+\section{Attention: truy cập nhiều trạng thái nguồn}
+Nén cả chuỗi vào duy nhất $h_T$ tạo nút thắt thông tin, nhất là với nguồn dài. Attention cho decoder nhìn tập $H=(h_1,\ldots,h_T)$ và tạo ngữ cảnh riêng tại mỗi bước~\cite{bahdanau2014}:
+\begin{align}
+e_{t,i}&=\operatorname{score}(s_{t-1},h_i),\\
+\alpha_{t,i}&=\frac{\exp(e_{t,i})}{\sum_{j\in\mathcal V_x}\exp(e_{t,j})},\quad i\in\mathcal V_x,\\
+c_t&=\sum_{i\in\mathcal V_x}\alpha_{t,i}h_i.
+\end{align}
+$\mathcal V_x$ là các vị trí nguồn thật; vị trí PAD bị mask. Các trọng số $\alpha_{t,i}$ không âm và có tổng bằng $1$ trên vị trí hợp lệ. Decoder có thể dùng $c_t$ khi cập nhật trạng thái hoặc khi tạo logits. Attention học theo mục tiêu dự đoán token; trọng số của nó không mặc nhiên là lời giải thích đầy đủ về quyết định của mô hình.
+
+\section{Transformer encoder--decoder}
+Transformer gốc thay các phép cập nhật RNN tuần tự trong từng tầng bằng attention và mạng feed-forward~\cite{vaswani2017}. Mỗi token được biểu diễn bằng embedding cộng thông tin vị trí. Với $Q=XW_Q$, $K=XW_K$, $V=XW_V$ và chiều khóa $d_k$:
+\begin{equation}
+\operatorname{Attention}(Q,K,V)=\operatorname{softmax}\!\left(\frac{QK^{\mathsf T}}{\sqrt{d_k}}+M\right)V.
+\end{equation}
+Mask $M$ có giá trị $0$ cho cặp vị trí được phép và giá trị rất âm cho cặp bị chặn. Multi-head attention tính nhiều phép chiếu $Q,K,V$ rồi ghép kết quả. Khối Transformer còn có feed-forward, residual connection và chuẩn hóa; công thức attention đơn lẻ chưa mô tả toàn mạng.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{p{3.6cm}p{4.2cm}p{5.4cm}}\toprule
+Khối & Q lấy từ & K, V lấy từ và mask\\\midrule
+Encoder self-attention & Biểu diễn nguồn & Biểu diễn nguồn; chặn PAD\\
+Decoder masked self-attention & Tiền tố đích & Tiền tố đích; chặn PAD và vị trí tương lai\\
+Decoder cross-attention & Biểu diễn decoder & Đầu ra encoder; chặn PAD nguồn\\\bottomrule
+\end{tabular}
+\caption{Ba nơi dùng attention trong Transformer encoder--decoder.}
+\end{table}
+Ở thời điểm train, causal mask cho phép tính các vị trí đích song song trong một lượt truyền xuôi mà không nhìn token tương lai. Khi sinh tự hồi quy, token tiếp theo vẫn phụ thuộc các token vừa được tạo nên quá trình tạo chuỗi diễn ra tuần tự. BERT thường là encoder-only; GPT thường là decoder-only; T5/BART là ví dụ encoder--decoder. Các tên gọi này chỉ kiến trúc tổng quát, không thay cho mô tả nhiệm vụ và cách huấn luyện cụ thể.
+
+\section{Thiết kế một thí nghiệm seq2seq có thể đánh giá}
+Notebook của dự án mới minh họa bằng lời và công thức, \emph{chưa cài hoặc chạy mô hình dịch}. Để triển khai thí nghiệm thật, cần xác định trước:
+\begin{enumerate}[leftmargin=*]
+\item \textbf{Dữ liệu:} cặp nguồn--đích, nguồn gốc, quyền sử dụng, bộ tách token, cách xử lý từ ngoài từ vựng và giới hạn độ dài.
+\item \textbf{Phép chia:} train/validation/test tách biệt; loại cặp trùng hoặc gần trùng giữa các tập. Chỉ fit từ vựng và chọn hyperparameter trên train/validation.
+\item \textbf{Đối chứng:} ví dụ RNN encoder--decoder cơ bản so với cùng cấu hình thêm attention; nếu dùng Transformer, báo rõ số tầng, kích thước và ngân sách huấn luyện.
+\item \textbf{Đo lường:} token cross-entropy trên test, exact match cho tác vụ có đáp án xác định, và đánh giá chất lượng văn bản phù hợp nhiệm vụ. Báo cả ví dụ đúng/sai, độ dài và trường hợp EOS xuất hiện quá sớm.
+\item \textbf{Ablation:} thay đổi một yếu tố mỗi lần, chẳng hạn có/không attention hoặc độ dài nguồn, trong khi giữ phép chia và điều kiện đánh giá cố định.
+\end{enumerate}
+Không được dùng câu dịch minh họa ở Bảng 1 như điểm số của một hệ thống. Test chỉ dùng sau khi chốt checkpoint và cách giải mã theo validation.
+
+\section{Kết luận}
+Seq2seq học phân phối token đích có điều kiện theo chuỗi nguồn và tiền tố đích. RNN cơ bản chuyển nguồn qua trạng thái cuối, attention cho phép tham chiếu nhiều vị trí nguồn, còn Transformer tổ chức các phép tham chiếu bằng self-attention và cross-attention có mask. Dù kiến trúc nào, việc dịch phải đầu vào decoder, loại PAD khỏi loss và tách train khỏi suy luận là điều kiện để thí nghiệm có nghĩa.
+
+\begin{thebibliography}{9}
+\bibitem{sutskever2014} I. Sutskever, O. Vinyals, Q. V. Le, \emph{Sequence to Sequence Learning with Neural Networks}, 2014. \url{https://arxiv.org/abs/1409.3215}.
+\bibitem{bahdanau2014} D. Bahdanau, K. Cho, Y. Bengio, \emph{Neural Machine Translation by Jointly Learning to Align and Translate}, 2014. \url{https://arxiv.org/abs/1409.0473}.
+\bibitem{vaswani2017} A. Vaswani et al., \emph{Attention Is All You Need}, 2017. \url{https://arxiv.org/abs/1706.03762}.
+\bibitem{slide} Trương Xuân Nam, \emph{Xử lý ngôn ngữ tự nhiên}, \texttt{slide/NLP-1.pdf}, trang 10 và 16.
+\bibitem{notebook} \texttt{encoder\_decoder\_minh\_hoa.ipynb}, phần 1.2--1.3: minh họa seq2seq và attention.
+\end{thebibliography}
+\end{document}

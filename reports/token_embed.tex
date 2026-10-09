@@ -1,0 +1,127 @@
+% Bien dich doc lap: xelatex -interaction=nonstopmode token_embed.tex (hai lan)
+\documentclass[12pt,a4paper]{article}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\usepackage{amsmath,amssymb,booktabs,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!55!black}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\renewcommand{\abstractname}{Tóm tắt}
+\renewcommand{\contentsname}{Mục lục}
+\renewcommand{\tablename}{Bảng}
+\renewcommand{\refname}{Tài liệu tham khảo}
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Báo cáo: Token và embedding}
+\fancyhead[R]{CBOW, Skip-gram}
+\fancyfoot[C]{\thepage}
+\renewcommand{\arraystretch}{1.2}
+\title{\textbf{Biểu diễn token bằng mạng nơ-ron nông}\\\large One-hot, embedding, CBOW và Skip-gram}
+\author{Tài liệu học tập và thực nghiệm từ notebook của dự án}
+\date{08/10/2026}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Báo cáo giải thích vì sao token cần được biến thành vector số và cách mạng nơ-ron nông học embedding từ ngữ cảnh. Hai nhiệm vụ Word2Vec được xét riêng: CBOW dự đoán từ trung tâm từ các từ xung quanh, còn Skip-gram dự đoán ngữ cảnh từ từ trung tâm. Công thức truyền xuôi, cross-entropy, gradient và kết quả NumPy của dự án được trình bày kèm giới hạn của corpus tổng hợp nhỏ.
+\end{abstract}
+\tableofcontents
+
+\section{Từ văn bản đến vector}
+Máy tính chỉ xử lý số, nên trước khi học cần định nghĩa token và từ vựng. Trong notebook, mỗi từ như \texttt{học\_sinh} hay \texttt{tài\_liệu} là một token đã được chuẩn bị. Đánh số token từ $0$ đến $V-1$ chỉ tạo ID; chênh lệch hai ID không biểu diễn độ khác nhau về nghĩa.
+
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{p{3.3cm}p{4.4cm}p{5.6cm}}\toprule
+Cách biểu diễn & Định nghĩa ngắn & Giới hạn quan trọng\\\midrule
+ID và one-hot & Vector dài $V$, chỉ một phần tử bằng $1$ & Các vector từ khác nhau trực giao, không mã hóa gần nghĩa\\
+Count vector & Đếm số lần token xuất hiện & Không trực tiếp biểu diễn thứ tự hay ngữ cảnh cục bộ\\
+TF--IDF & Cân tần suất theo mức phổ biến toàn corpus & Là đặc trưng thống kê, không tự học quan hệ dự đoán\\
+Embedding & Tra một hàng trong ma trận $W_{in}\in\mathbb R^{V\times d}$ & Ý nghĩa phụ thuộc corpus và mục tiêu huấn luyện\\\bottomrule
+\end{tabular}
+\caption{Các cách đưa token vào mô hình; phạm vi bám theo slide môn học trang 6--9.}
+\end{table}
+Với token có ID $i$ và one-hot $e_i$, phép nhân $e_iW_{in}=W_{in}[i]$ chính là tra hàng embedding của token đó. Thông thường $d\ll V$, nhưng embedding không bắt buộc có ít chiều hơn một biểu diễn đầu vào khác. Token hóa cũng quyết định từ vựng: nếu một từ mới không có ID và không có cơ chế \texttt{<UNK>} hay subword, mô hình không nhận được từ đó.
+
+\section{CBOW: ngữ cảnh dự đoán từ giữa}
+\subsection{Mẫu huấn luyện và truyền xuôi}
+Ví dụ ``học\_sinh [đọc] sách'' có ngữ cảnh là hai từ hai bên và nhãn là ``đọc''. Gọi $a,b$ là ID hai từ ngữ cảnh. Với một mẫu:
+\begin{align}
+X&=\frac{e_a+e_b}{2}\in\mathbb R^V,\\
+H&=XW_{in}=\frac{W_{in}[a]+W_{in}[b]}{2}\in\mathbb R^d,\\
+S&=HW_{out}+b_{out}\in\mathbb R^V,\\
+P_j&=\frac{\exp(S_j)}{\sum_{k=1}^V\exp(S_k)}.
+\end{align}
+$W_{out}\in\mathbb R^{d\times V}$ và $b_{out}\in\mathbb R^V$. Trong cách nhìn của bài học, $W_{in}$ tạo biểu diễn ẩn, còn $W_{out}$ biến biểu diễn thành phân phối từ dự đoán. Đây là mạng hai phép chiếu với một tầng ẩn tuyến tính, không có ReLU hay $\tanh$ ở giữa. Softmax nằm ở tầng đầu ra. Lấy trung bình khiến thứ tự hai từ ngữ cảnh bị mất.
+
+\subsection{Loss và đạo hàm}
+Với $B$ mẫu và nhãn one-hot $Y$, cross-entropy trung bình là
+\begin{equation}
+L=-\frac1B\sum_{i=1}^{B}\log P_{i,y_i}.
+\end{equation}
+Đặt $G=(P-Y)/B$. Khi đó
+\begin{equation}
+\frac{\partial L}{\partial W_{out}}=H^{\mathsf T}G,\qquad
+\frac{\partial L}{\partial b_{out}}=\sum_i G_{i,:},\qquad
+\frac{\partial L}{\partial W_{in}}=X^{\mathsf T}(GW_{out}^{\mathsf T}).
+\end{equation}
+Gradient của $W_{in}$ chứng tỏ embedding được học thông qua lỗi dự đoán từ trung tâm. Khi cài đặt softmax, trừ giá trị logit lớn nhất trước khi lấy $\exp$ để tránh tràn số; phép trừ chung này không đổi phân phối.
+
+\section{Skip-gram: từ giữa dự đoán ngữ cảnh}
+Skip-gram đổi vai trò đầu vào và nhãn. Với chuỗi ``học\_sinh đọc sách'' và cửa sổ bán kính $1$, có các cặp $(\text{học\_sinh}\to\text{đọc})$, $(\text{đọc}\to\text{học\_sinh})$, $(\text{đọc}\to\text{sách})$, $(\text{sách}\to\text{đọc})$. Mỗi cặp được xem như một mẫu dự đoán riêng.
+
+Ở một cặp có từ trung tâm $c$ và từ ngữ cảnh $o$, đặt $X=e_c$, $H=XW_{in}=W_{in}[c]$, $S=HW_{out}+b_{out}$ và $L=-\log P(o\mid c)$. Công thức gradient giống CBOW vì lớp tính toán không đổi; thứ khác là cách tạo $X$ và $y$. Một từ trung tâm có thể đi với nhiều ngữ cảnh, nên xác suất được phân bố trên nhiều nhãn. Đầu ra Skip-gram là phân phối \emph{từ ngữ cảnh}, không phải một câu đã giải mã.
+
+CBOW và Skip-gram trong notebook dùng full softmax vì từ vựng nhỏ. Với từ vựng lớn, chi phí tính phân phối trên toàn bộ $V$ từ có thể cao; các biến thể Word2Vec dùng hierarchical softmax và negative sampling~\cite{mikolov2013,mikolov2013negative}. Thay negative sampling sẽ thay cả hàm mục tiêu và gradient, không đơn thuần là bỏ bớt vài phần tử softmax.
+
+\section{Thiết kế dữ liệu và quy trình huấn luyện}
+Notebook tạo ba nhóm câu ngắn tổng hợp thuộc học tập, động vật và lập trình. Mỗi tổ hợp chủ ngữ--tân ngữ đi cùng hai động từ hợp lệ, ví dụ ``đọc'' hoặc ``xem''. Các cặp ngữ cảnh được phân giữa train/validation/test, mỗi cặp và hai biến thể động từ luôn ở cùng một tập. Từ vựng gồm $V=24$ token, embedding có $d=4$ chiều; số tham số $24\cdot4+4\cdot24+24=216$.
+
+CBOW có $30$ câu train, $12$ validation và $12$ test. Skip-gram tạo cửa sổ bán kính $1$ từ các câu ấy, cho $120$ cặp train, $48$ validation và $48$ test. Cả hai dùng gradient descent trên batch đầy đủ và chọn epoch bằng validation, sau đó mới tính test. Hàm \texttt{gradient\_check} so đạo hàm giải tích của tất cả $216$ tham số với sai phân hữu hạn; sai số chuẩn hóa lớn nhất được lưu là $4.97\times10^{-10}$.
+
+\section{Kết quả và cách diễn giải}
+\begin{table}[ht]
+\centering\small
+\begin{tabular}{p{3.2cm}rrr}\toprule
+Mô hình & Test CE & Baseline unigram CE & Test top-1\\\midrule
+CBOW & $0.7008$ & $2.1972$ & $50.0\%$\\
+Skip-gram & $1.4443$ & $3.1790$ & $27.1\%$\\\bottomrule
+\end{tabular}
+\caption{Kết quả đã lưu trong notebook với seed $42$ trên corpus tổng hợp. CE là cross-entropy trung bình theo mẫu/cặp của từng nhiệm vụ.}
+\end{table}
+CBOW có nhiều ngữ cảnh giống hệt nhau nhưng hai nhãn cân bằng. Dự đoán gần $0.5$--$0.5$ cho hai động từ là hợp lý; cross-entropy lý tưởng của riêng hai lựa chọn gần $\ln 2\approx0.693$, trong khi top-1 chỉ đúng khoảng một nửa. Ví dụ notebook cho cặp ``sinh\_viên [ ? ] tài\_liệu'' dự đoán ``đọc'' khoảng $0.505$ và ``xem'' khoảng $0.493$.
+
+Với Skip-gram, tuy câu test khác câu train, \emph{toàn bộ 36 cặp từ khác nhau} xuất hiện ở test cũng đã xuất hiện ở train. Vì vậy, kết quả test không chứng minh khả năng xử lý cặp từ hoàn toàn mới. Hai giá trị CE của CBOW và Skip-gram cũng không so sánh trực tiếp để kết luận kiến trúc nào tốt hơn, vì số mẫu, đầu vào, nhãn và độ bất định khác nhau.
+
+\section{Sử dụng embedding và các giới hạn}
+Sau huấn luyện, có thể lấy các hàng của $W_{in}$ làm embedding. Một phép kiểm tra gần nhau là cosine
+\begin{equation}
+\operatorname{cos}(u,v)=\frac{u^{\mathsf T}v}{\|u\|_2\|v\|_2}.
+\end{equation}
+Đây là phép đo khoảng cách giữa vector đã học, khác với phép dự đoán $\operatorname{softmax}(zW_{out}+b_{out})$ của decoder. Notebook thấy ``xem'' gần ``đọc'' theo cosine trong corpus đồ chơi; một quan sát như vậy không đủ để khẳng định model hiểu ngữ nghĩa tiếng Việt nói chung. Hình PCA hai chiều chỉ là phép chiếu để xem, không thay đổi mô hình và có thể làm méo quan hệ khoảng cách.
+
+Các embedding kiểu Word2Vec lưu một vector cố định cho mỗi token, nên từ đa nghĩa có thể bị gộp nghĩa. Corpus nhỏ làm số ngữ cảnh rất hạn chế; không có subword hay cơ chế xử lý từ ngoài từ vựng. Muốn đánh giá trên tiếng Việt thật cần corpus được phép dùng, token hóa phù hợp, tách dữ liệu không rò rỉ và cả đánh giá theo nhiệm vụ sử dụng embedding.
+
+\section{Tái lập và câu hỏi tự kiểm tra}
+Chạy \texttt{encoder\_decoder\_minh\_hoa.ipynb} từ đầu với các thư viện trong \texttt{requirements.txt}. Notebook ghi rõ phiên bản Python/NumPy, cố định seed và xuất các chỉ số ở trên. Để khảo sát kích thước embedding, thay $d$ nhưng giữ cách chia và seed, chọn cấu hình theo validation; dùng test cho lần báo cáo cuối.
+
+\begin{enumerate}[leftmargin=*]
+\item Vì sao khoảng cách giữa hai ID từ không có ý nghĩa ngôn ngữ?
+\item Trong CBOW, tại sao $XW_{in}$ là trung bình hai hàng embedding?
+\item Khi đổi CBOW sang Skip-gram, phần nào của forward và loss vẫn giữ nguyên?
+\item Tại sao top-1 accuracy $50\%$ có thể phù hợp với một phân phối CBOW tốt?
+\end{enumerate}
+
+\begin{thebibliography}{9}
+\bibitem{mikolov2013} T. Mikolov, K. Chen, G. Corrado, J. Dean, \emph{Efficient Estimation of Word Representations in Vector Space}, 2013. \url{https://arxiv.org/abs/1301.3781}.
+\bibitem{mikolov2013negative} T. Mikolov et al., \emph{Distributed Representations of Words and Phrases and their Compositionality}, 2013. \url{https://arxiv.org/abs/1310.4546}.
+\bibitem{slide} Trương Xuân Nam, \emph{Xử lý ngôn ngữ tự nhiên}, \texttt{slide/NLP-1.pdf}, trang 6--14.
+\bibitem{notebook} \texttt{encoder\_decoder\_minh\_hoa.ipynb}, phần 3--4: dữ liệu, hàm \texttt{word\_forward}, gradient và kết quả CBOW/Skip-gram.
+\end{thebibliography}
+\end{document}

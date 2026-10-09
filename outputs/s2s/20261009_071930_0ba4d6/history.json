@@ -1,0 +1,42 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 6.050050871264506,
+    "validation_loss": 5.600821128190256,
+    "train_token_accuracy": 0.08749094842204644,
+    "validation_token_accuracy": 0.12408352668213457,
+    "seconds": 90.7565581
+  },
+  {
+    "epoch": 2,
+    "train_loss": 5.4987539707845645,
+    "validation_loss": 5.255997747788573,
+    "train_token_accuracy": 0.13608990164715803,
+    "validation_token_accuracy": 0.1651044083526682,
+    "seconds": 50.142023600000016
+  },
+  {
+    "epoch": 3,
+    "train_loss": 5.169955828487565,
+    "validation_loss": 4.991059445693155,
+    "train_token_accuracy": 0.17747509097408729,
+    "validation_token_accuracy": 0.20241299303944316,
+    "seconds": 67.82992000000002
+  },
+  {
+    "epoch": 4,
+    "train_loss": 4.888162301349552,
+    "validation_loss": 4.792698167415893,
+    "train_token_accuracy": 0.21159151947349605,
+    "validation_token_accuracy": 0.22849187935034804,
+    "seconds": 136.18875150000008
+  },
+  {
+    "epoch": 5,
+    "train_loss": 4.654311447194605,
+    "validation_loss": 4.610592213783352,
+    "train_token_accuracy": 0.24057490123468106,
+    "validation_token_accuracy": 0.254385150812065,
+    "seconds": 113.54410739999992
+  }
+]

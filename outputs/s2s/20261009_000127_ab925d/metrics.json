@@ -1,0 +1,10 @@
+{
+  "checkpoint_epoch": 5,
+  "test_pairs": 500,
+  "teacher_forced_loss": 4.605067869608359,
+  "teacher_forced_token_accuracy": 0.258069967889133,
+  "bleu": 1.7274820636003934,
+  "chrf": 13.510500384727168,
+  "bleu_signature": "nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0",
+  "chrf_signature": "nrefs:1|case:mixed|eff:yes|nc:6|nw:0|space:no|version:2.6.0"
+}
