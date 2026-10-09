@@ -1,0 +1,35 @@
+{
+  "input_stats": {
+    "train": {
+      "rows": 133166,
+      "duplicates": 1020,
+      "empty": 0,
+      "too_long": 6400
+    },
+    "validation": {
+      "rows": 1268,
+      "duplicates": 7,
+      "empty": 0,
+      "too_long": 68
+    },
+    "test": {
+      "rows": 1268,
+      "duplicates": 7,
+      "empty": 0,
+      "too_long": 68
+    }
+  },
+  "validation_rebuilt_from_train": true,
+  "removed_train_pairs_with_test_source": 137,
+  "removed_train_pairs_with_validation_source": 0,
+  "selected_pairs": {
+    "train": 128,
+    "validation": 24,
+    "test": 24
+  },
+  "file_sha256": {
+    "train": "a7e0d2535453b1cb872eb55c949b306324a4c2f7334271c4003541162a8a5fec",
+    "validation": "56a3e046861fbb7a8e7df40edf7fa5f33890b1691dc7310b6cc55a99ea95e095",
+    "test": "56a3e046861fbb7a8e7df40edf7fa5f33890b1691dc7310b6cc55a99ea95e095"
+  }
+}

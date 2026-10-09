@@ -1,0 +1,152 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand*\HyPL@Entry[1]{}
+\HyPL@Entry{0<</S/D>>}
+\pgfsyspdfmark {pgfid1}{4475220}{50081478}
+\HyPL@Entry{1<</S/r>>}
+\@writefile{toc}{\contentsline {section}{Tóm tắt}{i}{Doc-Start}\protected@file@percent }
+\citation{d2larch}
+\citation{tritue}
+\citation{numberanalytics}
+\citation{d2larch}
+\citation{sutskever}
+\citation{cho}
+\citation{bahdanau}
+\citation{vaswani}
+\HyPL@Entry{4<</S/D>>}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Giới thiệu và phạm vi kiến trúc}{1}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Vấn đề ánh xạ giữa hai chuỗi}{1}{subsection.1.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Encoder và decoder trong bài toán Seq2Seq}{1}{subsection.1.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Encoder và decoder phối hợp trong mô hình Seq2Seq dịch văn bản.}}{1}{table.caption.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {1.3}Nguồn tài liệu và nguyên tắc tổng hợp}{1}{subsection.1.3}\protected@file@percent }
+\citation{subword}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Biểu diễn dữ liệu và cơ sở xác suất}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Ký hiệu thống nhất}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Ký hiệu sử dụng trong báo cáo.}}{2}{table.caption.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Từ văn bản đến token và embedding}{2}{subsection.2.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Các token đặc biệt trong một thiết kế Seq2Seq cơ bản.}}{3}{table.caption.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Phân phối có điều kiện của toàn chuỗi}{3}{subsection.2.3}\protected@file@percent }
+\newlabel{eq:factor}{{2.2}{3}{Phân phối có điều kiện của toàn chuỗi}{equation.2.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Cấu trúc tổng thể của Encoder--Decoder}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Ba thành phần và luồng thông tin}{3}{subsection.3.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Luồng thông tin của Seq2Seq. Tiền tố đích dùng token đúng khi teacher forcing và token mô hình đã sinh khi suy luận. Sơ đồ do người viết xây dựng.}}{3}{figure.caption.4}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:overview}{{1}{3}{Luồng thông tin của Seq2Seq. Tiền tố đích dùng token đúng khi teacher forcing và token mô hình đã sinh khi suy luận. Sơ đồ do người viết xây dựng}{figure.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Hai khối có cần cùng loại mạng không?}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Seq2Seq dựa trên RNN, LSTM và GRU}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Encoder RNN đọc chuỗi như thế nào?}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{eq:rnn}{{4.1}{4}{Encoder RNN đọc chuỗi như thế nào?}{equation.4.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces RNN được trải theo thời gian. Mỗi khối là một lần áp dụng ô hồi quy với trọng số dùng chung; encoder và decoder có tham số riêng.}}{4}{figure.caption.5}\protected@file@percent }
+\citation{torchce}
+\citation{d2llstm}
+\citation{sutskever}
+\citation{cho}
+\citation{d2lgru}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Decoder và tầng phân phối token}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Vì sao RNN đơn giản gặp khó với chuỗi dài?}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}LSTM: trạng thái ẩn và trạng thái ô nhớ}{5}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}GRU: cơ chế cổng gọn hơn}{5}{subsection.4.5}\protected@file@percent }
+\citation{torchgru}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}So sánh các ô hồi quy}{6}{subsection.4.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Ước lượng với embedding đầu vào $d$, hidden size $h$ và một bias cho mỗi phép biến đổi cổng; thư viện có thể dùng hai bộ bias. Không suy ra chất lượng chỉ từ số tham số.}}{6}{table.caption.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Ví dụ xuyên suốt: dịch câu Anh--Việt}{6}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Dữ liệu minh họa và cách dịch phải nhãn}{6}{subsection.5.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Teacher forcing sử dụng token đúng ở bước trước, không sử dụng token cần dự đoán của bước hiện tại.}}{7}{table.caption.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Một bước dự đoán bằng số}{7}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Tại sao không có ánh xạ một--một giữa các vị trí?}{7}{subsection.5.3}\protected@file@percent }
+\citation{d2lseq}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Huấn luyện mô hình Seq2Seq}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Cực đại hóa likelihood và cross-entropy có mask}{8}{subsection.6.1}\protected@file@percent }
+\newlabel{eq:loss}{{6.1}{8}{Cực đại hóa likelihood và cross-entropy có mask}{equation.6.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Teacher forcing và khác biệt phân phối đầu vào}{8}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Lan truyền ngược cập nhật encoder bằng cách nào?}{8}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Quy trình một bước tối ưu}{8}{subsection.6.4}\protected@file@percent }
+\citation{torchpack}
+\citation{bahdanau}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Padding, chia dữ liệu và theo dõi học}{9}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Attention: truy cập ngữ cảnh theo từng bước}{9}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Nút thắt của một vector cố định}{9}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Attention cộng và vector ngữ cảnh động}{9}{subsection.7.2}\protected@file@percent }
+\citation{luong}
+\citation{vaswani}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Attention tạo context riêng cho mỗi bước đích. Các mũi tên từ nguồn biểu diễn phép tổng theo trọng số, không phải chọn đúng một token.}}{10}{figure.caption.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Ví dụ tính context bằng số}{10}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Mask và giới hạn khi diễn giải Attention}{10}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}Transformer Encoder--Decoder}{10}{section.8}\protected@file@percent }
+\citation{d2ltransformer}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.1}Từ hồi quy sang Attention}{11}{subsection.8.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.2}Scaled dot-product Attention}{11}{subsection.8.2}\protected@file@percent }
+\newlabel{eq:att}{{8.1}{11}{Scaled dot-product Attention}{equation.8.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.3}Multi-head Attention và mạng truyền thẳng}{11}{subsection.8.3}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Sơ đồ chức năng của Transformer Encoder--Decoder. Các tầng có thể lặp nhiều lần; residual, chuẩn hóa và dropout được lược khỏi hình để dễ quan sát đường dữ liệu.}}{12}{figure.caption.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.4}Mã hóa vị trí và ba loại mask}{12}{subsection.8.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Mask thực hiện ở các khối tương ứng; mask loss là cơ chế riêng dùng để bỏ nhãn PAD.}}{12}{table.caption.10}\protected@file@percent }
+\citation{t5}
+\citation{bart}
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.5}Song song hóa và chi phí tính toán}{13}{subsection.8.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {8.6}Phân biệt các họ Transformer}{13}{subsection.8.6}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Ba cách tổ chức Transformer; cùng dùng Attention nhưng khác đường truyền thông tin.}}{13}{table.caption.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}Suy luận và các chiến lược giải mã}{13}{section.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.1}Greedy decoding}{13}{subsection.9.1}\protected@file@percent }
+\citation{d2lbeam}
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.2}Ví dụ greedy bỏ lỡ chuỗi tốt hơn}{14}{subsection.9.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.3}Beam search và chuẩn hóa độ dài}{14}{subsection.9.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {9.4}Sampling và kiểm soát sinh}{14}{subsection.9.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Ứng dụng, đánh giá và giới hạn}{14}{section.10}\protected@file@percent }
+\citation{bleu}
+\citation{sacrebleu}
+\citation{rouge}
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.1}Ứng dụng và yêu cầu tương ứng}{15}{subsection.10.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Các bài toán Seq2Seq với đầu vào và đầu ra đều là văn bản.}}{15}{table.caption.12}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.2}Loss và perplexity}{15}{subsection.10.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.3}BLEU cho dịch máy}{15}{subsection.10.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.4}ROUGE và đánh giá thủ công}{15}{subsection.10.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {10.5}Lỗi thường gặp và giả thuyết kiểm tra}{16}{subsection.10.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Bảng chẩn đoán là các giả thuyết thực hành, không phải kết luận nguyên nhân chỉ từ biểu hiện.}}{16}{table.caption.13}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}Đề xuất triển khai và thiết kế thực nghiệm}{16}{section.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}Mục tiêu kiểm chứng}{16}{subsection.11.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}Pipeline dữ liệu}{16}{subsection.11.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}Hình dạng tensor cần theo dõi}{17}{subsection.11.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Quy ước batch-first cho các tensor chuỗi. $L_e$ là số lớp encoder.}}{17}{table.caption.14}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.4}Cấu hình khởi đầu có thể điều chỉnh}{17}{subsection.11.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Các giá trị là điểm bắt đầu minh họa, không phải cấu hình tối ưu được xác nhận.}}{17}{table.caption.15}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.5}Ablation và mẫu ghi kết quả}{17}{subsection.11.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Mẫu ghi kết quả, chưa có số đo. Dấu ``--'' nghĩa là chưa thực nghiệm, không phải giá trị bằng không.}}{18}{table.caption.16}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.6}Các kiểm tra tối thiểu trước khi huấn luyện dài}{18}{subsection.11.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {12}Tổng hợp và kết luận}{18}{section.12}\protected@file@percent }
+\citation{torchgru}
+\citation{torchpack}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Mã PyTorch minh họa GRU Seq2Seq}{19}{appendix.A}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Phạm vi và giả thiết của đoạn mã}{19}{subsection.A.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.2}Greedy decoding cho một câu nguồn}{20}{subsection.A.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {B}Câu hỏi ôn tập và thuật ngữ}{21}{appendix.B}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}Câu hỏi tự kiểm tra}{21}{subsection.B.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.2}Bảng thuật ngữ}{21}{subsection.B.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Thuật ngữ cốt lõi trong mô hình sinh chuỗi có điều kiện.}}{21}{table.caption.17}\protected@file@percent }
+\bibcite{tritue}{1}
+\bibcite{numberanalytics}{2}
+\bibcite{d2larch}{3}
+\bibcite{sutskever}{4}
+\bibcite{cho}{5}
+\bibcite{bahdanau}{6}
+\bibcite{luong}{7}
+\bibcite{vaswani}{8}
+\bibcite{subword}{9}
+\bibcite{t5}{10}
+\bibcite{bart}{11}
+\bibcite{bleu}{12}
+\bibcite{rouge}{13}
+\bibcite{sacrebleu}{14}
+\bibcite{d2llstm}{15}
+\@writefile{toc}{\contentsline {section}{Tài liệu tham khảo}{22}{section*.18}\protected@file@percent }
+\bibcite{d2lgru}{16}
+\bibcite{d2lseq}{17}
+\bibcite{d2lbeam}{18}
+\bibcite{d2ltransformer}{19}
+\bibcite{torchgru}{20}
+\bibcite{torchce}{21}
+\bibcite{torchpack}{22}
+\newlabel{LastPage}{{A.2}{23}{Greedy decoding cho một câu nguồn}{page.23}{}}
+\gdef\lastpage@lastpage{23}
+\gdef\lastpage@lastpageHy{23}
+\gdef \@abspage@last{27}

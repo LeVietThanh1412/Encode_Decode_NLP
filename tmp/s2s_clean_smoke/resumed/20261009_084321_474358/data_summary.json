@@ -1,0 +1,23 @@
+{
+  "input_stats": {
+    "train": {
+      "rows": 133166,
+      "duplicates": 1020,
+      "empty": 0,
+      "too_long": 33289
+    },
+    "test": {
+      "rows": 1268,
+      "duplicates": 7,
+      "empty": 0,
+      "too_long": 366
+    }
+  },
+  "validation_source": "5% source groups from train; original validation equals test",
+  "removed_train_pairs_with_test_source": 137,
+  "selected_pairs": {
+    "train": 128,
+    "validation": 24,
+    "test": 24
+  }
+}

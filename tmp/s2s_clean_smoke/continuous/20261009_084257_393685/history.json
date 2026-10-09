@@ -1,0 +1,18 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 6.5959755117546655,
+    "validation_loss": 6.51060315456343,
+    "train_token_accuracy": 0.00043782837127845885,
+    "validation_token_accuracy": 0.0024813895781637717,
+    "seconds": 0.2318500999999742
+  },
+  {
+    "epoch": 2,
+    "train_loss": 6.573534375940647,
+    "validation_loss": 6.4854595477764425,
+    "train_token_accuracy": 0.00043782837127845885,
+    "validation_token_accuracy": 0.0024813895781637717,
+    "seconds": 0.19807270000001154
+  }
+]

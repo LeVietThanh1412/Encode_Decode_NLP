@@ -1,0 +1,197 @@
+7.5s 1 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+7.5s 2 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+7.5s 3 0.00s - to python to disable frozen modules.
+7.5s 4 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+8.1s 5 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+8.1s 6 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+8.1s 7 0.00s - to python to disable frozen modules.
+8.1s 8 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+9.4s 9 Cloning into 'Encode_Decode_NLP'...
+10.0s 10 remote: Enumerating objects: 54, done.[K
+10.0s 11 remote: Counting objects:   1% (1/54)[Kremote: Counting objects:   3% (2/54)[Kremote: Counting objects:   5% (3/54)[Kremote: Counting objects:   7% (4/54)[Kremote: Counting objects:   9% (5/54)[Kremote: Counting objects:  11% (6/54)[Kremote: Counting objects:  12% (7/54)[Kremote: Counting objects:  14% (8/54)[Kremote: Counting objects:  16% (9/54)[Kremote: Counting objects:  18% (10/54)[Kremote: Counting objects:  20% (11/54)[Kremote: Counting objects:  22% (12/54)[Kremote: Counting objects:  24% (13/54)[Kremote: Counting objects:  25% (14/54)[Kremote: Counting objects:  27% (15/54)[Kremote: Counting objects:  29% (16/54)[Kremote: Counting objects:  31% (17/54)[Kremote: Counting objects:  33% (18/54)[Kremote: Counting objects:  35% (19/54)[Kremote: Counting objects:  37% (20/54)[Kremote: Counting objects:  38% (21/54)[Kremote: Counting objects:  40% (22/54)[Kremote: Counting objects:  42% (23/54)[Kremote: Counting objects:  44% (24/54)[Kremote: Counting objects:  46% (25/54)[Kremote: Counting objects:  48% (26/54)[Kremote: Counting objects:  50% (27/54)[Kremote: Counting objects:  51% (28/54)[Kremote: Counting objects:  53% (29/54)[Kremote: Counting objects:  55% (30/54)[Kremote: Counting objects:  57% (31/54)[Kremote: Counting objects:  59% (32/54)[Kremote: Counting objects:  61% (33/54)[Kremote: Counting objects:  62% (34/54)[Kremote: Counting objects:  64% (35/54)[Kremote: Counting objects:  66% (36/54)[Kremote: Counting objects:  68% (37/54)[Kremote: Counting objects:  70% (38/54)[Kremote: Counting objects:  72% (39/54)[Kremote: Counting objects:  74% (40/54)[Kremote: Counting objects:  75% (41/54)[Kremote: Counting objects:  77% (42/54)[Kremote: Counting objects:  79% (43/54)[Kremote: Counting objects:  81% (44/54)[Kremote: Counting objects:  83% (45/54)[Kremote: Counting objects:  85% (46/54)[Kremote: Counting objects:  87% (47/54)[Kremote: Counting objects:  88% (48/54)[Kremote: Counting objects:  90% (49/54)[Kremote: Counting objects:  92% (50/54)[Kremote: Counting objects:  94% (51/54)[Kremote: Counting objects:  96% (52/54)[Kremote: Counting objects:  98% (53/54)[Kremote: Counting objects: 100% (54/54)[Kremote: Counting objects: 100% (54/54), done.[K
+10.0s 12 remote: Compressing objects:   2% (1/43)[Kremote: Compressing objects:   4% (2/43)[Kremote: Compressing objects:   6% (3/43)[Kremote: Compressing objects:   9% (4/43)[Kremote: Compressing objects:  11% (5/43)[Kremote: Compressing objects:  13% (6/43)[Kremote: Compressing objects:  16% (7/43)[Kremote: Compressing objects:  18% (8/43)[Kremote: Compressing objects:  20% (9/43)[Kremote: Compressing objects:  23% (10/43)[Kremote: Compressing objects:  25% (11/43)[Kremote: Compressing objects:  27% (12/43)[Kremote: Compressing objects:  30% (13/43)[Kremote: Compressing objects:  32% (14/43)[Kremote: Compressing objects:  34% (15/43)[Kremote: Compressing objects:  37% (16/43)[Kremote: Compressing objects:  39% (17/43)[Kremote: Compressing objects:  41% (18/43)[Kremote: Compressing objects:  44% (19/43)[Kremote: Compressing objects:  46% (20/43)[Kremote: Compressing objects:  48% (21/43)[Kremote: Compressing objects:  51% (22/43)[Kremote: Compressing objects:  53% (23/43)[Kremote: Compressing objects:  55% (24/43)[Kremote: Compressing objects:  58% (25/43)[Kremote: Compressing objects:  60% (26/43)[Kremote: Compressing objects:  62% (27/43)[Kremote: Compressing objects:  65% (28/43)[Kremote: Compressing objects:  67% (29/43)[Kremote: Compressing objects:  69% (30/43)[Kremote: Compressing objects:  72% (31/43)[Kremote: Compressing objects:  74% (32/43)[Kremote: Compressing objects:  76% (33/43)[Kremote: Compressing objects:  79% (34/43)[Kremote: Compressing objects:  81% (35/43)[Kremote: Compressing objects:  83% (36/43)[Kremote: Compressing objects:  86% (37/43)[Kremote: Compressing objects:  88% (38/43)[Kremote: Compressing objects:  90% (39/43)[Kremote: Compressing objects:  93% (40/43)[Kremote: Compressing objects:  95% (41/43)[Kremote: Compressing objects:  97% (42/43)[Kremote: Compressing objects: 100% (43/43)[Kremote: Compressing objects: 100% (43/43), done.[K
+10.8s 13 Receiving objects:   1% (1/54)Receiving objects:   3% (2/54)Receiving objects:   5% (3/54)Receiving objects:   7% (4/54)Receiving objects:   9% (5/54)Receiving objects:  11% (6/54)Receiving objects:  12% (7/54)Receiving objects:  14% (8/54)Receiving objects:  16% (9/54)Receiving objects:  18% (10/54)Receiving objects:  20% (11/54)Receiving objects:  22% (12/54)Receiving objects:  24% (13/54)Receiving objects:  25% (14/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  27% (15/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  29% (16/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  31% (17/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  33% (18/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  35% (19/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  37% (20/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  38% (21/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  40% (22/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  42% (23/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  44% (24/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  46% (25/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  48% (26/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  50% (27/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  51% (28/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  53% (29/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  55% (30/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  57% (31/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  59% (32/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  61% (33/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  62% (34/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  64% (35/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  66% (36/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  68% (37/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  70% (38/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  72% (39/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  74% (40/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  75% (41/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  77% (42/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  79% (43/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  81% (44/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  83% (45/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  85% (46/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  87% (47/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  88% (48/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  90% (49/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  92% (50/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  94% (51/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  96% (52/54), 12.29 MiB | 24.57 MiB/sReceiving objects:  98% (53/54), 12.29 MiB | 24.57 MiB/sremote: Total 54 (delta 7), reused 54 (delta 7), pack-reused 0 (from 0)[K
+10.8s 14 Receiving objects: 100% (54/54), 12.29 MiB | 24.57 MiB/sReceiving objects: 100% (54/54), 25.31 MiB | 33.14 MiB/s, done.
+10.8s 15 Resolving deltas:   0% (0/7)Resolving deltas:  14% (1/7)Resolving deltas:  28% (2/7)Resolving deltas:  42% (3/7)Resolving deltas:  57% (4/7)Resolving deltas:  71% (5/7)Resolving deltas:  85% (6/7)Resolving deltas: 100% (7/7)Resolving deltas: 100% (7/7), done.
+13.6s 16 Collecting sacrebleu
+13.6s 17 Downloading sacrebleu-2.6.0-py3-none-any.whl.metadata (39 kB)
+13.7s 18 Collecting portalocker (from sacrebleu)
+13.7s 19 Downloading portalocker-4.4.0-py3-none-any.whl.metadata (10 kB)
+13.7s 20 Requirement already satisfied: regex in /usr/local/lib/python3.13/dist-packages (from sacrebleu) (2025.11.3)
+13.7s 21 Requirement already satisfied: tabulate>=0.8.9 in /usr/local/lib/python3.13/dist-packages (from sacrebleu) (0.9.0)
+13.7s 22 Requirement already satisfied: numpy>=1.17 in /usr/local/lib/python3.13/dist-packages (from sacrebleu) (2.1.3)
+13.7s 23 Requirement already satisfied: colorama in /usr/local/lib/python3.13/dist-packages (from sacrebleu) (0.4.6)
+13.7s 24 Requirement already satisfied: lxml in /usr/local/lib/python3.13/dist-packages (from sacrebleu) (6.1.2)
+13.7s 25 Downloading sacrebleu-2.6.0-py3-none-any.whl (100 kB)
+13.8s 26 [?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/100.8 kB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m100.8/100.8 kB[0m [31m4.1 MB/s[0m eta [36m0:00:00[0m
+13.8s 27 [?25hDownloading portalocker-4.4.0-py3-none-any.whl (129 kB)
+13.8s 28 [?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/129.6 kB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m129.6/129.6 kB[0m [31m5.7 MB/s[0m eta [36m0:00:00[0m
+15.9s 29 [?25hInstalling collected packages: portalocker, sacrebleu
+16.0s 30 Successfully installed portalocker-4.4.0 sacrebleu-2.6.0
+16.1s 31 Note: you may need to restart the kernel to use updated packages.
+24.0s 32 cuda
+24.2s 33 GPU: Tesla T4
+24.2s 34 Device: cuda:0 | AMP: True
+24.2s 35 Data: /kaggle/working/Encode_Decode_NLP/data
+24.2s 36 Output: /kaggle/working/Encode_Decode_NLP/outputs/s2s/20261009_014824_309071
+24.2s 37 {
+24.2s 38 "seed": 42,
+24.2s 39 "max_train_samples": null,
+24.2s 40 "max_validation_samples": null,
+24.2s 41 "max_test_samples": null,
+24.2s 42 "validation_fraction": 0.05,
+24.2s 43 "max_src_tokens": 60,
+24.2s 44 "max_tgt_tokens": 60,
+24.2s 45 "src_vocab_size": 30000,
+24.2s 46 "tgt_vocab_size": 30000,
+24.2s 47 "min_freq": 2,
+24.2s 48 "embedding_dim": 256,
+24.2s 49 "hidden_dim": 256,
+24.2s 50 "dropout": 0.2,
+24.2s 51 "batch_size": 64,
+24.2s 52 "epochs": 50,
+24.2s 53 "learning_rate": 0.001,
+24.2s 54 "gradient_clip": 1.0,
+24.2s 55 "patience": 5,
+24.2s 56 "cpu_threads": 4,
+24.2s 57 "num_workers": 2,
+24.2s 58 "use_amp": true
+24.2s 59 }
+24.2s 60 PyTorch: 2.11.0+cu128 | Thiết bị: cuda
+24.2s 61 GPU: Tesla T4
+24.2s 62 Data: /kaggle/working/Encode_Decode_NLP/data
+24.2s 63 Kết quả: /kaggle/working/outputs/s2s/20261009_014824_72d318
+24.2s 64 {
+24.2s 65 "seed": 42,
+24.2s 66 "max_train_samples": null,
+24.2s 67 "max_validation_samples": null,
+24.2s 68 "max_test_samples": null,
+24.2s 69 "validation_fraction": 0.05,
+24.2s 70 "max_src_tokens": 60,
+24.2s 71 "max_tgt_tokens": 60,
+24.2s 72 "src_vocab_size": 30000,
+24.2s 73 "tgt_vocab_size": 30000,
+24.2s 74 "min_freq": 2,
+24.2s 75 "embedding_dim": 256,
+24.2s 76 "hidden_dim": 256,
+24.2s 77 "dropout": 0.2,
+24.2s 78 "batch_size": 64,
+24.2s 79 "epochs": 50,
+24.2s 80 "learning_rate": 0.001,
+24.2s 81 "gradient_clip": 1.0,
+24.2s 82 "patience": 5,
+24.2s 83 "cpu_threads": 4,
+24.2s 84 "num_workers": 2,
+24.2s 85 "use_amp": true
+24.2s 86 }
+28.6s 87 train      | {'rows': 133166, 'duplicates': 1020, 'empty': 0, 'too_long': 6400} | giữ 125,746 cặp
+28.6s 88 validation | {'rows': 1268, 'duplicates': 7, 'empty': 0, 'too_long': 68} | giữ 1,193 cặp
+28.6s 89 test       | {'rows': 1268, 'duplicates': 7, 'empty': 0, 'too_long': 68} | giữ 1,193 cặp
+28.6s 90 
+28.6s 91 Validation/test trùng 1,184 câu nguồn. Tạo validation mới từ train.
+28.9s 92 Loại cặp train trùng câu nguồn test: 137
+28.9s 93 Số cặp sử dụng: {'train': 119329, 'validation': 6280, 'test': 1193}
+28.9s 94 
+28.9s 95 Một ví dụ train:
+28.9s 96 EN: the first of these ag - gag prosecutions , as they ' re called , was a young woman named amy meyer , and amy saw a sick cow being moved by a bulldozer outside of a slaughterhouse as she was on the public street .
+28.9s 97 VI: vụ thứ nhất của kiểu bắt bớ bịt mồm , như người ta vẫn gọi , là với một phụ nữ trẻ tên amy meyer , amy thấy người ta dùng máy xúc để đẩy một con bò bị ốm bên ngoài lò sát sinh khi đang đi ngoài phố .
+33.8s 98 Vocabulary: EN=24,865 | VI=10,341
+33.8s 99 validation: EN <unk>=1.13% | VI <unk>=0.47%
+33.8s 100 test: EN <unk>=1.61% | VI <unk>=0.61%
+33.8s 101 Một batch: src (3, 47) | target (3, 53)
+33.8s 102 Decoder input: [2, 424, 76, 92, 13, 586, 118, 4885, 2818, 4708, 5, 35, 18, 17, 234, 219, 5, 8, 26, 9, 257, 274, 197, 339, 2480, 5563, 5, 2480, 58, 18, 17, 240, 174, 617, 36, 766, 9, 65, 1151, 87, 2006, 242, 344, 1728, 459, 141, 42, 53, 78, 344, 373, 4]
+33.8s 103 Target labels: [424, 76, 92, 13, 586, 118, 4885, 2818, 4708, 5, 35, 18, 17, 234, 219, 5, 8, 26, 9, 257, 274, 197, 339, 2480, 5563, 5, 2480, 58, 18, 17, 240, 174, 617, 36, 766, 9, 65, 1151, 87, 2006, 242, 344, 1728, 459, 141, 42, 53, 78, 344, 373, 4, 3]
+35.3s 104 Số tham số: 13,314,149
+35.3s 105 Logits: (3, 52, 10341) | Attention: (3, 52, 47)
+35.3s 106 Forward và mask hợp lệ.
+121.0s 107 Epoch 01 | train loss=4.5854 | val loss=3.5998 | val token acc=39.01% | 80.1s | lưu best
+201.1s 108 Epoch 02 | train loss=3.5098 | val loss=3.1260 | val token acc=45.13% | 80.0s | lưu best
+281.6s 109 Epoch 03 | train loss=3.1635 | val loss=2.9086 | val token acc=47.80% | 80.4s | lưu best
+362.0s 110 Epoch 04 | train loss=2.9615 | val loss=2.7775 | val token acc=49.48% | 80.4s | lưu best
+442.3s 111 Epoch 05 | train loss=2.8249 | val loss=2.6941 | val token acc=50.54% | 80.2s | lưu best
+522.6s 112 Epoch 06 | train loss=2.7237 | val loss=2.6314 | val token acc=51.34% | 80.2s | lưu best
+602.9s 113 Epoch 07 | train loss=2.6423 | val loss=2.5850 | val token acc=51.92% | 80.3s | lưu best
+683.3s 114 Epoch 08 | train loss=2.5789 | val loss=2.5496 | val token acc=52.43% | 80.2s | lưu best
+763.5s 115 Epoch 09 | train loss=2.5238 | val loss=2.5252 | val token acc=52.74% | 80.2s | lưu best
+843.7s 116 Epoch 10 | train loss=2.4789 | val loss=2.4991 | val token acc=53.08% | 80.1s | lưu best
+923.8s 117 Epoch 11 | train loss=2.4372 | val loss=2.4787 | val token acc=53.44% | 80.0s | lưu best
+1003.9s 118 Epoch 12 | train loss=2.4034 | val loss=2.4711 | val token acc=53.40% | 80.0s | lưu best
+1084.0s 119 Epoch 13 | train loss=2.3717 | val loss=2.4598 | val token acc=53.56% | 80.0s | lưu best
+1164.1s 120 Epoch 14 | train loss=2.3441 | val loss=2.4372 | val token acc=54.04% | 80.0s | lưu best
+1244.1s 121 Epoch 15 | train loss=2.3192 | val loss=2.4450 | val token acc=53.73% | 80.1s
+1324.3s 122 Epoch 16 | train loss=2.2945 | val loss=2.4154 | val token acc=54.23% | 80.1s | lưu best
+1404.4s 123 Epoch 17 | train loss=2.2735 | val loss=2.4248 | val token acc=53.99% | 80.1s
+1484.5s 124 Epoch 18 | train loss=2.2544 | val loss=2.4113 | val token acc=54.35% | 80.1s | lưu best
+1564.7s 125 Epoch 19 | train loss=2.2366 | val loss=2.4162 | val token acc=54.32% | 80.1s
+1644.9s 126 Epoch 20 | train loss=2.2211 | val loss=2.3932 | val token acc=54.68% | 80.1s | lưu best
+1725.1s 127 Epoch 21 | train loss=2.2047 | val loss=2.3986 | val token acc=54.50% | 80.2s
+1805.1s 128 Epoch 22 | train loss=2.1893 | val loss=2.3910 | val token acc=54.71% | 79.9s | lưu best
+1885.3s 129 Epoch 23 | train loss=2.1761 | val loss=2.3845 | val token acc=54.74% | 80.2s | lưu best
+1965.4s 130 Epoch 24 | train loss=2.1628 | val loss=2.3926 | val token acc=54.64% | 80.0s
+2045.5s 131 Epoch 25 | train loss=2.1514 | val loss=2.3776 | val token acc=54.83% | 80.0s | lưu best
+2125.4s 132 Epoch 26 | train loss=2.1400 | val loss=2.3824 | val token acc=54.93% | 79.9s
+2205.3s 133 Epoch 27 | train loss=2.1278 | val loss=2.3785 | val token acc=54.91% | 79.9s
+2285.3s 134 Epoch 28 | train loss=2.1184 | val loss=2.3760 | val token acc=54.93% | 79.9s | lưu best
+2365.5s 135 Epoch 29 | train loss=2.1079 | val loss=2.3674 | val token acc=55.20% | 80.1s | lưu best
+2445.8s 136 Epoch 30 | train loss=2.0981 | val loss=2.3756 | val token acc=54.93% | 80.3s
+2525.7s 137 Epoch 31 | train loss=2.0899 | val loss=2.3677 | val token acc=55.16% | 79.9s
+2605.7s 138 Epoch 32 | train loss=2.0805 | val loss=2.3621 | val token acc=55.05% | 79.9s | lưu best
+2685.7s 139 Epoch 33 | train loss=2.0725 | val loss=2.3687 | val token acc=55.09% | 80.0s
+2765.6s 140 Epoch 34 | train loss=2.0640 | val loss=2.3629 | val token acc=55.23% | 79.9s
+2845.9s 141 Epoch 35 | train loss=2.0576 | val loss=2.3574 | val token acc=55.24% | 80.2s | lưu best
+2926.4s 142 Epoch 36 | train loss=2.0486 | val loss=2.3745 | val token acc=55.03% | 80.5s
+3006.6s 143 Epoch 37 | train loss=2.0419 | val loss=2.3612 | val token acc=55.35% | 80.2s
+3086.9s 144 Epoch 38 | train loss=2.0351 | val loss=2.3565 | val token acc=55.41% | 80.2s | lưu best
+3167.5s 145 Epoch 39 | train loss=2.0297 | val loss=2.3672 | val token acc=55.28% | 80.6s
+3248.3s 146 Epoch 40 | train loss=2.0237 | val loss=2.3723 | val token acc=55.24% | 80.8s
+3329.4s 147 Epoch 41 | train loss=2.0169 | val loss=2.3667 | val token acc=55.28% | 81.1s
+3410.3s 148 Epoch 42 | train loss=2.0105 | val loss=2.3701 | val token acc=55.34% | 80.9s
+3491.0s 149 Epoch 43 | train loss=2.0054 | val loss=2.3682 | val token acc=55.18% | 80.8s
+3491.0s 150 Early stopping.
+3491.0s 151 
+3491.0s 152 Best epoch: 38 | validation loss: 2.3565
+3491.0s 153 Checkpoint: /kaggle/working/outputs/s2s/20261009_014824_72d318/best_model.pt
+3491.6s 154 Đã lấy model tại epoch: 38
+3492.3s 155 Test loss (teacher forcing)=2.4262 | perplexity=11.32 | token accuracy=55.16%
+3493.9s 156 Test: 1,193 cặp sau lọc/lấy mẫu.
+3493.9s 157 BLEU: BLEU = 24.75 57.8/32.1/19.0/11.6 (BP = 0.979 ratio = 0.979 hyp_len = 28008 ref_len = 28599)
+3493.9s 158 chrF: chrF2 = 42.50
+3493.9s 159 BLEU signature: nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0
+3493.9s 160 chrF signature: nrefs:1|case:mixed|eff:yes|nc:6|nw:0|space:no|version:2.6.0
+3493.9s 161 
+3493.9s 162 [1] EN: the next question people always ask me is, " do they retouch all the photos? "
+3493.9s 163 REF: câu hỏi tiếp theo mà người ta luôn hỏi tôi: " có phải tất cả các tấm ảnh đều được chỉnh sửa đúng không? "
+3493.9s 164 PRED: câu hỏi tiếp theo luôn hỏi tôi là " họ có thể làm cho họ có tất cả những tấm ảnh? "
+3493.9s 165 
+3493.9s 166 [2] EN: which presentation have you applauded the most this morning?
+3493.9s 167 REF: bài thuyết trình nào bạn vỗ tay nhiều nhất trong sáng nay?
+3493.9s 168 PRED: trình bày cho bạn thấy một buổi sáng hôm nay?
+3493.9s 169 
+3493.9s 170 [3] EN: and i think the answer that they ' re looking for is, " if you are a little bit skinnier and you have shinier hair, you will be so happy and fabulous. "
+3493.9s 171 REF: tôi nghĩ rằng cái họ muốn được nghe là " nếu bạn gầy hơn một chút, và tóc bạn óng ả hơn, bạn sẽ rất hạnh phúc và sung sướng ".
+3493.9s 172 PRED: và tôi nghĩ câu trả lời cho rằng, " nếu bạn là một cái hũ <unk> và bạn có một mái tóc, và thật tuyệt vời. "
+3493.9s 173 
+3493.9s 174 [4] EN: i will demonstrate for you now 10 years of accumulated model knowledge, because unlike cardio - thoracic surgeons, it can just be distilled right into - - right now.
+3493.9s 175 REF: tôi sẽ chứng minh cho các bạn - - với 10 năm kinh nghiệm tôi tích luỹ được khi làm người mẫu, vì nó không giống với bác sĩ phẫu thuật tim, nên chỉ cần một thời gian ngắn.
+3493.9s 176 PRED: tôi sẽ chứng minh cho các bạn 10 năm về các mẫu thông minh, bởi vì không giống như những bác sĩ phẫu thuật <unk> - <unk> - <unk>, nó có thể được đặt đúng đắn.
+3493.9s 177 
+3493.9s 178 [5] EN: so i want to encourage everyone today to get in the shot, and don ' t hesitate to go up to someone and ask, " will you take our picture? "
+3493.9s 179 REF: vì vậy hôm nay tôi muốn động viên tất cả mọi người hãy có mặt trong bức ảnh, và đừng ngần ngại bước tới chỗ một ai đó, và hỏi, " bạn chụp ảnh giúp chúng tôi nhé? "
+3493.9s 180 PRED: tôi muốn khuyến khích mọi người hôm nay để chụp hình, và không ngần ngại đến một người và hỏi, " bạn sẽ lấy bức hình của mình không? "
+3494.1s 181 EN: I am very happy to be here today.
+3494.1s 182 VI: hôm nay tôi rất vui khi được ở đây.
+3494.1s 183 Token EN ngoài vocabulary: []
+3494.5s 184 Checkpoint: /kaggle/working/outputs/s2s/20261009_014824_72d318/best_model.pt
+3494.5s 185 Dịch từ model đã tải: hôm nay tôi rất vui khi được ở đây.
+3494.5s 186 Checkpoint tải lại cho cùng kết quả.
+3500.1s 187 /usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+3500.1s 188 cells[i][c] = re.sub('\\\\\|', '|', cell)
+3500.3s 189 /usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+3500.3s 190 text = re.sub(r'_', '\_', text) # Escape underscores in display text
+3501.1s 191 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+3501.3s 192 [NbConvertApp] Writing 1198701 bytes to __notebook__.ipynb
+3503.9s 193 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+3504.7s 194 [NbConvertApp] Support files will be in __results___files/
+3504.7s 195 [NbConvertApp] Making directory __results___files
+3504.7s 196 [NbConvertApp] Making directory __results___files
+3504.7s 197 [NbConvertApp] Writing 1294042 bytes to __results__.html

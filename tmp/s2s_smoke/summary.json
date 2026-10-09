@@ -1,0 +1,23 @@
+{
+  "training_epochs_checked": [
+    2,
+    1,
+    "resume_to_2"
+  ],
+  "samples": {
+    "train": 128,
+    "validation": 24,
+    "test": 24
+  },
+  "training_loss": [
+    6.722584875991252,
+    6.697484537228172
+  ],
+  "resume_max_weight_difference": 0.0,
+  "kaggle_path_and_profile": "passed",
+  "padding_and_causal_decoder": "passed",
+  "inference_checkpoint_round_trip": "passed",
+  "bleu_chrf_and_predictions_export": "passed",
+  "cuda_tested": false,
+  "run_directory": "E:\\LeVietThanh1412-NCKH\\Encode_Decode_NLP\\tmp\\s2s_smoke\\20261009_081259_d14d46"
+}

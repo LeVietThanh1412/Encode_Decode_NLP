@@ -1,0 +1,23 @@
+{
+  "seed": 42,
+  "max_train_samples": 128,
+  "max_validation_samples": 24,
+  "max_test_samples": 24,
+  "validation_fraction": 0.05,
+  "max_src_tokens": 60,
+  "max_tgt_tokens": 60,
+  "src_vocab_size": 2000,
+  "tgt_vocab_size": 2000,
+  "min_freq": 1,
+  "embedding_dim": 16,
+  "hidden_dim": 16,
+  "dropout": 0.2,
+  "batch_size": 16,
+  "epochs": 2,
+  "learning_rate": 0.001,
+  "gradient_clip": 1.0,
+  "patience": 10,
+  "cpu_threads": 2,
+  "num_workers": 0,
+  "use_amp": true
+}

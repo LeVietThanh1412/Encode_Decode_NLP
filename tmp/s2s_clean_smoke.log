@@ -1,0 +1,230 @@
+
+PyTorch: 2.14.1+cpu | GPU: CPU smoke test; GPU not available locally
+Device: cpu | AMP: False
+Data: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\data
+Output: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_clean_smoke\continuous\20261009_084257_393685
+{
+  "seed": 42,
+  "max_train_samples": 128,
+  "max_validation_samples": 24,
+  "max_test_samples": 24,
+  "validation_fraction": 0.05,
+  "max_src_tokens": 32,
+  "max_tgt_tokens": 32,
+  "src_vocab_size": 2000,
+  "tgt_vocab_size": 2000,
+  "min_freq": 1,
+  "embedding_dim": 16,
+  "hidden_dim": 16,
+  "dropout": 0.2,
+  "batch_size": 16,
+  "epochs": 2,
+  "learning_rate": 0.001,
+  "gradient_clip": 1.0,
+  "patience": 10,
+  "num_workers": 0,
+  "use_amp": false
+}
+Train TSV: {'rows': 133166, 'duplicates': 1020, 'empty': 0, 'too_long': 33289}
+Test TSV: {'rows': 1268, 'duplicates': 7, 'empty': 0, 'too_long': 366}
+Số cặp dùng: {'train': 128, 'validation': 24, 'test': 24}
+EN: so fast - forward to today , and we now live there .
+VI: và đến ngày hôm nay , chúng tôi sống ở đó .
+Vocabulary: EN=673 | VI=727
+Train: 8 batch/epoch
+Test UNK: EN=24.01%, VI=19.31%
+Model device: cpu
+Tham số: 41,495
+EN: so fast - forward to today , and we now live there .
+VI: và đến ngày hôm nay , chúng tôi sống ở đó .
+Embedding: (3, 22, 16) | Encoder memory: (3, 22, 16)
+Decoder initial hidden: (1, 3, 16)
+Logits: (3, 24, 727) | Attention: (3, 24, 22)
+8 chiều đầu hidden: [0.16776049137115479, -0.02290225401520729, 0.09157654643058777, 0.13981178402900696, 0.09234247356653214, 0.0257805734872818, 0.2763396203517914, 0.13688436150550842]
+Train 1/2:   0%|          | 0/8 [00:00<?, ?it/s]
+                                                
+
+Validation:   0%|          | 0/2 [00:00<?, ?it/s]
+                                                 
+Epoch 01 | train=6.5960 | val=6.5106 | val acc=0.25% | 0.2s | lưu best + last
+
+Train 2/2:   0%|          | 0/8 [00:00<?, ?it/s]
+                                                
+
+Validation:   0%|          | 0/2 [00:00<?, ?it/s]
+                                                 
+<string>:17: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+Epoch 02 | train=6.5735 | val=6.4855 | val acc=0.25% | 0.2s | lưu best + last
+Best epoch: 2 | val loss: 6.4855
+Model để dịch: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_clean_smoke\continuous\20261009_084257_393685\best_model.pt
+Checkpoint để resume: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_clean_smoke\continuous\20261009_084257_393685\last_model.pt
+Đã lấy model tại epoch: 2
+
+Test loss:   0%|          | 0/2 [00:00<?, ?it/s]
+                                                
+Test loss (teacher forcing)=6.5058 | perplexity=668.99 | token accuracy=0.25%
+
+Greedy dịch test:   0%|          | 0/2 [00:00<?, ?it/s]
+Greedy dịch test: 100%|██████████| 2/2 [00:00<00:00, 51.39it/s]
+<string>:38: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+Test: 24 cặp sau lọc/lấy mẫu.
+BLEU: BLEU = 0.07 0.5/0.1/0.0/0.0 (BP = 1.000 ratio = 2.095 hyp_len = 792 ref_len = 378)
+chrF: chrF2 = 5.67
+BLEU signature: nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0
+chrF signature: nrefs:1|case:mixed|eff:yes|nc:6|nw:0|space:no|version:2.6.0
+
+[1] EN: kofi was rescued from a fishing village.
+REF: kofi được cứu từ 1 làng chài.
+PRED: suôn devil quan quan quan quan quan quan cầu cầu cầu bước thuật quan quan quan quan quan quan cầu cầu cầu bước thuật quan quan quan quan quan quan cầu cầu cầu
+
+[2] EN: we couldn ' t retouch the photo unless it was cleaned, dry and reclaimed.
+REF: chúng tôi không thể chỉnh sửa nếu ảnh không được làm sạch, phơi khô và cải tạo.
+PRED: suôn devil thuật quan quan quan quan cầu cầu bước thuật thuật thuật quan quá cầu cầu quan quan quan quan quan cầu cầu bước thuật thuật thuật quan quá cầu cầu quan
+
+[3] EN: who sends whom a text message?
+REF: ai đã gửi cho ai những tin nhắn di động?
+PRED: suôn đó devil bước thuật thuật quan quan quan quan cầu cầu cầu quan quan quan quan quan cầu cầu cầu quan quan quan quan cầu cầu cầu quan quan quan quan cầu
+
+[4] EN: those are my dad ' s cows at the back, and behind the cows, that ' s the nairobi national park.
+REF: phía sau tôi là đàn bò của bố tôi, và phía sau đàn bò, là công viên quốc gia nairobi.
+PRED: suôn devil quan quan quan quan quan cầu cầu cầu quan quan quan quan cầu cầu cầu quan quan quan quan cầu cầu cầu quan quan quan quan cầu cầu cầu quan quan
+
+[5] EN: i know we ' re getting personal, but i was a young girl.
+REF: tôi biết rằng ta đang đi sâu vào chuyện cá nhân nhưng lúc đó tôi đang là một cô bé.
+PRED: suôn nơi bước charles bước charles bước charles bước charles đi và bước charles bước charles bước charles đi và bước charles bước charles bước charles đi và bước charles bước charles bước
+EN: I am very happy to be here today.
+VI: suôn nơi bước charles bước charles bước charles ảnh phế suôn nơi bước charles bước charles bước charles ảnh phế suôn nơi bước charles bước charles bước charles ảnh phế suôn nơi bước
+Token EN ngoài vocabulary: ['am', 'happy']
+Checkpoint: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_clean_smoke\continuous\20261009_084257_393685\best_model.pt
+Dịch từ model đã tải: suôn nơi bước charles bước charles bước charles ảnh phế suôn nơi bước charles bước charles bước charles ảnh phế suôn nơi bước charles bước charles bước charles ảnh phế suôn nơi bước
+PyTorch: 2.14.1+cpu | GPU: CPU smoke test; GPU not available locally
+Device: cpu | AMP: False
+Data: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\data
+Output: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_clean_smoke\partial\20261009_084305_502470
+{
+  "seed": 42,
+  "max_train_samples": 128,
+  "max_validation_samples": 24,
+  "max_test_samples": 24,
+  "validation_fraction": 0.05,
+  "max_src_tokens": 32,
+  "max_tgt_tokens": 32,
+  "src_vocab_size": 2000,
+  "tgt_vocab_size": 2000,
+  "min_freq": 1,
+  "embedding_dim": 16,
+  "hidden_dim": 16,
+  "dropout": 0.2,
+  "batch_size": 16,
+  "epochs": 1,
+  "learning_rate": 0.001,
+  "gradient_clip": 1.0,
+  "patience": 10,
+  "num_workers": 0,
+  "use_amp": false
+}
+Train TSV: {'rows': 133166, 'duplicates': 1020, 'empty': 0, 'too_long': 33289}
+Test TSV: {'rows': 1268, 'duplicates': 7, 'empty': 0, 'too_long': 366}
+Số cặp dùng: {'train': 128, 'validation': 24, 'test': 24}
+EN: so fast - forward to today , and we now live there .
+VI: và đến ngày hôm nay , chúng tôi sống ở đó .
+Vocabulary: EN=673 | VI=727
+Train: 8 batch/epoch
+Test UNK: EN=24.01%, VI=19.31%
+Model device: cpu
+Tham số: 41,495
+EN: so fast - forward to today , and we now live there .
+VI: và đến ngày hôm nay , chúng tôi sống ở đó .
+Embedding: (3, 22, 16) | Encoder memory: (3, 22, 16)
+Decoder initial hidden: (1, 3, 16)
+Logits: (3, 24, 727) | Attention: (3, 24, 22)
+8 chiều đầu hidden: [0.16776049137115479, -0.02290225401520729, 0.09157654643058777, 0.13981178402900696, 0.09234247356653214, 0.0257805734872818, 0.2763396203517914, 0.13688436150550842]
+
+Train 1/1:   0%|          | 0/8 [00:00<?, ?it/s]
+Train 1/1:  25%|██▌       | 2/8 [00:02<00:06,  1.05s/it]
+Train 1/1:  62%|██████▎   | 5/8 [00:03<00:01,  1.67it/s]
+                                                        
+
+Validation:   0%|          | 0/2 [00:00<?, ?it/s]
+                                                 
+Epoch 01 | train=6.5960 | val=6.5106 | val acc=0.25% | 4.2s | lưu best + last
+Best epoch: 1 | val loss: 6.5106
+Model để dịch: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_clean_smoke\partial\20261009_084305_502470\best_model.pt
+Checkpoint để resume: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_clean_smoke\partial\20261009_084305_502470\last_model.pt
+PyTorch: 2.14.1+cpu | GPU: CPU smoke test; GPU not available locally
+Device: cpu | AMP: False
+Data: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\data
+Output: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_clean_smoke\resumed\20261009_084321_474358
+{
+  "seed": 42,
+  "max_train_samples": 128,
+  "max_validation_samples": 24,
+  "max_test_samples": 24,
+  "validation_fraction": 0.05,
+  "max_src_tokens": 32,
+  "max_tgt_tokens": 32,
+  "src_vocab_size": 2000,
+  "tgt_vocab_size": 2000,
+  "min_freq": 1,
+  "embedding_dim": 16,
+  "hidden_dim": 16,
+  "dropout": 0.2,
+  "batch_size": 16,
+  "epochs": 2,
+  "learning_rate": 0.001,
+
+  "gradient_clip": 1.0,
+  "patience": 10,
+  "num_workers": 0,
+  "use_amp": false
+}
+Train TSV: {'rows': 133166, 'duplicates': 1020, 'empty': 0, 'too_long': 33289}
+Test TSV: {'rows': 1268, 'duplicates': 7, 'empty': 0, 'too_long': 366}
+Số cặp dùng: {'train': 128, 'validation': 24, 'test': 24}
+EN: so fast - forward to today , and we now live there .
+VI: và đến ngày hôm nay , chúng tôi sống ở đó .
+Vocabulary: EN=673 | VI=727
+Train: 8 batch/epoch
+Test UNK: EN=24.01%, VI=19.31%
+Model device: cpu
+Tham số: 41,495
+EN: so fast - forward to today , and we now live there .
+VI: và đến ngày hôm nay , chúng tôi sống ở đó .
+Embedding: (3, 22, 16) | Encoder memory: (3, 22, 16)
+Decoder initial hidden: (1, 3, 16)
+Logits: (3, 24, 727) | Attention: (3, 24, 22)
+8 chiều đầu hidden: [0.16776049137115479, -0.02290225401520729, 0.09157654643058777, 0.13981178402900696, 0.09234247356653214, 0.0257805734872818, 0.2763396203517914, 0.13688436150550842]
+Resume từ epoch 1; chạy tiếp từ epoch 2.
+Train 2/2:   0%|          | 0/8 [00:00<?, ?it/s]
+                                                
+
+Validation:   0%|          | 0/2 [00:00<?, ?it/s]
+                                                 
+Epoch 02 | train=6.5735 | val=6.4855 | val acc=0.25% | 0.3s | lưu best + last
+Best epoch: 2 | val loss: 6.4855
+Model để dịch: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_clean_smoke\resumed\20261009_084321_474358\best_model.pt
+Checkpoint để resume: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_clean_smoke\resumed\20261009_084321_474358\last_model.pt
+
+FINAL SMOKE TEST SUMMARY
+{
+  "notebook_schema_and_syntax": "passed",
+  "fixed_kaggle_data_path": "passed",
+  "gpu_required_no_cpu_fallback": true,
+  "cuda_tested": false,
+  "training_samples": 128,
+  "validation_samples": 24,
+  "test_samples": 24,
+  "continuous_training_loss": [
+    6.5959755117546655,
+    6.573534375940647
+  ],
+  "resume_max_weight_difference": 0.0,
+  "padding_and_causal_mask": "passed",
+  "mixed_dtype_forward_backward_cpu_bfloat16": "passed",
+  "checkpoint_reload_bleu_chrf_predictions_export": "passed",
+  "length_bucketing": {
+    "random_batch_slots": 7680,
+    "bucket_batch_slots": 5200
+  },
+  "run_directory": "E:\\LeVietThanh1412-NCKH\\Encode_Decode_NLP\\tmp\\s2s_clean_smoke\\continuous\\20261009_084257_393685"
+}

@@ -1,0 +1,22 @@
+{
+  "notebook_schema_and_syntax": "passed",
+  "fixed_kaggle_data_path": "passed",
+  "gpu_required_no_cpu_fallback": true,
+  "cuda_tested": false,
+  "training_samples": 128,
+  "validation_samples": 24,
+  "test_samples": 24,
+  "continuous_training_loss": [
+    6.5959755117546655,
+    6.573534375940647
+  ],
+  "resume_max_weight_difference": 0.0,
+  "padding_and_causal_mask": "passed",
+  "mixed_dtype_forward_backward_cpu_bfloat16": "passed",
+  "checkpoint_reload_bleu_chrf_predictions_export": "passed",
+  "length_bucketing": {
+    "random_batch_slots": 7680,
+    "bucket_batch_slots": 5200
+  },
+  "run_directory": "E:\\LeVietThanh1412-NCKH\\Encode_Decode_NLP\\tmp\\s2s_clean_smoke\\continuous\\20261009_084257_393685"
+}

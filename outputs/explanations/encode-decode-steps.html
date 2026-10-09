@@ -1,0 +1,144 @@
+<div id="s2s-explainer-oct09">
+  <style>
+    #s2s-explainer-oct09 { color: var(--foreground); }
+    #s2s-explainer-oct09 .flow { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1.3fr) auto minmax(0,1fr); gap: 12px; align-items: center; margin: 20px 0; }
+    #s2s-explainer-oct09 .stage { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+    #s2s-explainer-oct09 .tokens { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    #s2s-explainer-oct09 .arrow { color: var(--muted-foreground); text-align: center; }
+    #s2s-explainer-oct09 .row-label { font-weight: 500; margin: 16px 0 8px; }
+    #s2s-explainer-oct09 .input-token { color: var(--foreground); background: color-mix(in srgb, var(--viz-series-1) 14%, transparent); padding: 4px 8px; }
+    #s2s-explainer-oct09 .selected-token { color: var(--foreground); background: color-mix(in srgb, var(--viz-series-1) 14%, transparent); }
+    #s2s-explainer-oct09 .control-block { margin-top: 16px; }
+    #s2s-explainer-oct09 .reference-label { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    @media (max-width: 560px) {
+      #s2s-explainer-oct09 .flow { grid-template-columns: minmax(0,1fr); gap: 8px; }
+      #s2s-explainer-oct09 .arrow { transform: rotate(90deg); }
+    }
+  </style>
+  <h3>Decoder nhận token nào ở từng bước?</h3>
+  <div class="text-small">Ví dụ giả định · không phải bản dịch từ checkpoint</div>
+  <div class="viz-controls control-block">
+    <label class="form-label" for="s2s-mode-oct09">Chế độ
+      <select class="form-select" id="s2s-mode-oct09">
+        <option value="train">Train — teacher forcing</option>
+        <option value="infer">Dịch — dùng token tự dự đoán</option>
+      </select>
+    </label>
+  </div>
+  <div class="flow" role="group" aria-label="Câu nguồn được đổi thành ID, embedding và memory của encoder">
+    <div class="stage">
+      <span>Câu nguồn</span>
+      <code>i love cats &lt;eos&gt;</code>
+      <span class="text-small">ID: 13 · 200 · 2003 · 3</span>
+    </div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <div class="stage">
+      <span>Embedding → GRU hai chiều</span>
+      <code>4 × 128 → 4 × 256</code>
+    </div>
+    <span class="arrow" aria-hidden="true">→</span>
+    <div class="stage">
+      <span>Memory sau chiếu</span>
+      <code>4 × 128</code>
+      <span class="text-small">+ hidden khởi tạo decoder</span>
+    </div>
+  </div>
+  <hr>
+  <label class="form-label" for="s2s-step-oct09">Bước <span id="s2s-step-value-oct09" class="tabular-nums">3 / 4</span></label>
+  <input class="form-range" id="s2s-step-oct09" type="range" min="1" max="4" value="3" step="1">
+  <div id="s2s-live-oct09" aria-live="polite">
+    <div class="flow" role="group" aria-label="Một bước dự đoán của decoder">
+      <div class="stage">
+        <span>Token vào decoder</span>
+        <code class="input-token" id="s2s-input-oct09">yêu</code>
+        <span class="text-small" id="s2s-input-source-oct09">Token thật ở bước trước</span>
+      </div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="stage">
+        <span>Embedding → GRU decoder</span>
+        <span>+ attention trên memory</span>
+        <span class="text-small">Hidden → logits → argmax</span>
+      </div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="stage">
+        <span>Token dự đoán</span>
+        <code class="input-token" id="s2s-prediction-oct09">mèo</code>
+        <span class="text-small" id="s2s-target-oct09">Token mục tiêu: mèo</span>
+      </div>
+    </div>
+    <div class="row-label" id="s2s-output-label-oct09">Các dự đoán đến bước hiện tại</div>
+    <div class="tokens" id="s2s-output-oct09"></div>
+    <div class="row-label" id="s2s-reference-label-oct09">Chuỗi đích thật dùng khi train</div>
+    <div class="tokens" id="s2s-reference-oct09"></div>
+  </div>
+  <script>
+  (() => {
+    const root = document.getElementById("s2s-explainer-oct09");
+    const get = (name) => root.querySelector("#s2s-" + name + "-oct09");
+    const controls = { mode: get("mode"), step: get("step") };
+    const truth = ["tôi", "yêu", "mèo", "<eos>"];
+    const predicted = {
+      train: ["tôi", "có", "mèo", "<eos>"],
+      infer: ["tôi", "có", "thể", "làm", "việc", "<eos>"]
+    };
+    let state = { mode: "train", step: 3 };
+    function apply(saved) {
+      const candidate = saved && (saved.modelContent || saved);
+      if (!candidate) return;
+      if (candidate.mode === "train" || candidate.mode === "infer") state.mode = candidate.mode;
+      if (Number.isInteger(candidate.step)) state.step = candidate.step;
+    }
+    function tokenRow(container, tokens, selected) {
+      container.replaceChildren();
+      tokens.forEach((text, i) => {
+        const element = document.createElement("code");
+        element.textContent = text;
+        if (i === selected) element.className = "selected-token";
+        container.appendChild(element);
+      });
+    }
+    function render() {
+      const sequence = predicted[state.mode];
+      state.step = Math.max(1, Math.min(state.step, sequence.length));
+      const index = state.step - 1;
+      controls.mode.value = state.mode;
+      controls.step.max = String(sequence.length);
+      controls.step.value = String(state.step);
+      get("step-value").textContent = state.step + " / " + sequence.length;
+      get("input").textContent = index === 0 ? "<bos>" :
+        (state.mode === "train" ? truth[index - 1] : sequence[index - 1]);
+      get("input-source").textContent = index === 0 ? "Token bắt đầu câu" :
+        (state.mode === "train" ? "Token thật ở bước trước" : "Token tự dự đoán ở bước trước");
+      get("prediction").textContent = sequence[index];
+      get("target").textContent = state.mode === "train" ?
+        "Token mục tiêu: " + truth[index] : "Không có câu đích trong decoder";
+      get("output-label").textContent = state.mode === "train" ?
+        "Dự đoán từng bước với teacher forcing" : "Chuỗi tự sinh đến bước hiện tại";
+      tokenRow(get("output"), sequence.slice(0, state.step), index);
+      get("reference-label").textContent = state.mode === "train" ?
+        "Chuỗi đích thật dùng khi train" : "Tham chiếu để so sánh · không đưa vào decoder";
+      tokenRow(get("reference"), truth, state.mode === "train" ? index : -1);
+    }
+    function remember() {
+      if (window.openai && typeof window.openai.setWidgetState === "function") {
+        window.openai.setWidgetState({
+          modelContent: { mode: state.mode, step: state.step },
+          privateContent: null
+        }).catch(() => {});
+      }
+    }
+    controls.mode.addEventListener("change", () => {
+      state.mode = controls.mode.value; render(); remember();
+    });
+    controls.step.addEventListener("input", () => {
+      state.step = Number(controls.step.value); render(); remember();
+    });
+    if (window.openai) apply(window.openai.widgetState);
+    window.addEventListener("openai:set_globals", (event) => {
+      const globals = event.detail && event.detail.globals;
+      if (globals && globals.widgetState) { apply(globals.widgetState); render(); }
+    });
+    render();
+  })();
+  </script>
+</div>

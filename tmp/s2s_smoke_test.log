@@ -1,0 +1,243 @@
+Profile: kaggle | PyTorch: 2.14.1+cpu
+Thiết bị: cpu | Mixed precision: False
+Đang dùng CPU. Bật GPU trong Settings để train cấu hình đầy đủ nhanh hơn.
+Data: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\data
+Kết quả: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_smoke\20261009_081244_7c67a3
+{
+  "seed": 42,
+  "max_train_samples": 128,
+  "max_validation_samples": 24,
+  "max_test_samples": 24,
+  "validation_fraction": 0.05,
+  "max_src_tokens": 60,
+  "max_tgt_tokens": 60,
+  "src_vocab_size": 2000,
+  "tgt_vocab_size": 2000,
+  "min_freq": 1,
+  "embedding_dim": 16,
+  "hidden_dim": 16,
+  "dropout": 0.2,
+  "batch_size": 16,
+  "epochs": 2,
+  "learning_rate": 0.001,
+  "gradient_clip": 1.0,
+  "patience": 10,
+  "cpu_threads": 2,
+  "num_workers": 0,
+  "use_amp": true
+}
+train      | {'rows': 133166, 'duplicates': 1020, 'empty': 0, 'too_long': 6400} | giữ 125,746 cặp
+validation | {'rows': 1268, 'duplicates': 7, 'empty': 0, 'too_long': 68} | giữ 1,193 cặp
+test       | {'rows': 1268, 'duplicates': 7, 'empty': 0, 'too_long': 68} | giữ 1,193 cặp
+
+Validation/test trùng 1,184 câu nguồn. Tạo validation mới từ train.
+Loại cặp train trùng câu nguồn test: 137
+Số cặp sử dụng: {'train': 128, 'validation': 24, 'test': 24}
+
+Một ví dụ train:
+EN: the first of these ag - gag prosecutions , as they ' re called , was a young woman named amy meyer , and amy saw a sick cow being moved by a bulldozer outside of a slaughterhouse as she was on the public street .
+VI: vụ thứ nhất của kiểu bắt bớ bịt mồm , như người ta vẫn gọi , là với một phụ nữ trẻ tên amy meyer , amy thấy người ta dùng máy xúc để đẩy một con bò bị ốm bên ngoài lò sát sinh khi đang đi ngoài phố .
+Vocabulary: EN=814 | VI=826
+validation: EN <unk>=28.51% | VI <unk>=15.54%
+test: EN <unk>=24.52% | VI <unk>=17.09%
+Một batch: src (3, 47) | target (3, 53)
+Decoder input: [2, 769, 60, 40, 13, 544, 92, 419, 416, 592, 5, 39, 19, 16, 244, 287, 5, 10, 21, 9, 138, 105, 171, 347, 256, 580, 5, 256, 35, 19, 16, 189, 72, 361, 33, 805, 9, 68, 409, 116, 822, 407, 305, 566, 675, 224, 30, 49, 175, 305, 316, 4]
+Target labels: [769, 60, 40, 13, 544, 92, 419, 416, 592, 5, 39, 19, 16, 244, 287, 5, 10, 21, 9, 138, 105, 171, 347, 256, 580, 5, 256, 35, 19, 16, 189, 72, 361, 33, 805, 9, 68, 409, 116, 822, 407, 305, 566, 675, 224, 30, 49, 175, 305, 316, 4, 3]
+Số tham số: 47,018
+Logits: (3, 52, 826) | Attention: (3, 52, 47)
+Forward và mask hợp lệ.
+
+Ví dụ encoder Seq2Seq, câu Anh: the first of these ag - gag prosecutions , as they ' re called , was a young woman named amy meyer , and amy saw a sick cow being moved by a bulldozer outside of a slaughterhouse as she was on the public street .
+Câu Việt cần học: vụ thứ nhất của kiểu bắt bớ bịt mồm , như người ta vẫn gọi , là với một phụ nữ trẻ tên amy meyer , amy thấy người ta dùng máy xúc để đẩy một con bò bị ốm bên ngoài lò sát sinh khi đang đi ngoài phố .
+Embedding nguồn: (3, 47, 16)
+Memory encoder: (3, 47, 16)
+Hidden khởi tạo decoder: (1, 3, 16)
+8 chiều đầu của hidden: [0.028431015089154243, 0.04616605117917061, -0.35139843821525574, 0.11225242912769318, 0.1953040063381195, 0.2431359887123108, -0.07129604369401932, -0.018059182912111282]
+Epoch 01 | train loss=6.7226 | val loss=6.6959 | val token acc=0.00% | 0.5s | lưu best + last
+Epoch 02 | train loss=6.6975 | val loss=6.6811 | val token acc=0.51% | 0.4s | lưu best + last
+
+Best epoch: 2 | validation loss: 6.6811
+Model để dịch: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_smoke\20261009_081244_7c67a3\best_model.pt
+Checkpoint để tiếp tục train: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_smoke\20261009_081244_7c67a3\last_model.pt
+Profile: kaggle | PyTorch: 2.14.1+cpu
+Thiết bị: cpu | Mixed precision: False
+Đang dùng CPU. Bật GPU trong Settings để train cấu hình đầy đủ nhanh hơn.
+Data: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\data
+Kết quả: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_smoke\20261009_081253_03b14c
+{
+  "seed": 42,
+  "max_train_samples": 128,
+  "max_validation_samples": 24,
+  "max_test_samples": 24,
+  "validation_fraction": 0.05,
+  "max_src_tokens": 60,
+  "max_tgt_tokens": 60,
+  "src_vocab_size": 2000,
+  "tgt_vocab_size": 2000,
+  "min_freq": 1,
+  "embedding_dim": 16,
+  "hidden_dim": 16,
+  "dropout": 0.2,
+  "batch_size": 16,
+  "epochs": 1,
+  "learning_rate": 0.001,
+  "gradient_clip": 1.0,
+  "patience": 10,
+  "cpu_threads": 2,
+  "num_workers": 0,
+  "use_amp": true
+}
+train      | {'rows': 133166, 'duplicates': 1020, 'empty': 0, 'too_long': 6400} | giữ 125,746 cặp
+validation | {'rows': 1268, 'duplicates': 7, 'empty': 0, 'too_long': 68} | giữ 1,193 cặp
+test       | {'rows': 1268, 'duplicates': 7, 'empty': 0, 'too_long': 68} | giữ 1,193 cặp
+
+Validation/test trùng 1,184 câu nguồn. Tạo validation mới từ train.
+Loại cặp train trùng câu nguồn test: 137
+Số cặp sử dụng: {'train': 128, 'validation': 24, 'test': 24}
+
+Một ví dụ train:
+EN: the first of these ag - gag prosecutions , as they ' re called , was a young woman named amy meyer , and amy saw a sick cow being moved by a bulldozer outside of a slaughterhouse as she was on the public street .
+VI: vụ thứ nhất của kiểu bắt bớ bịt mồm , như người ta vẫn gọi , là với một phụ nữ trẻ tên amy meyer , amy thấy người ta dùng máy xúc để đẩy một con bò bị ốm bên ngoài lò sát sinh khi đang đi ngoài phố .
+Vocabulary: EN=814 | VI=826
+validation: EN <unk>=28.51% | VI <unk>=15.54%
+test: EN <unk>=24.52% | VI <unk>=17.09%
+Một batch: src (3, 47) | target (3, 53)
+Decoder input: [2, 769, 60, 40, 13, 544, 92, 419, 416, 592, 5, 39, 19, 16, 244, 287, 5, 10, 21, 9, 138, 105, 171, 347, 256, 580, 5, 256, 35, 19, 16, 189, 72, 361, 33, 805, 9, 68, 409, 116, 822, 407, 305, 566, 675, 224, 30, 49, 175, 305, 316, 4]
+Target labels: [769, 60, 40, 13, 544, 92, 419, 416, 592, 5, 39, 19, 16, 244, 287, 5, 10, 21, 9, 138, 105, 171, 347, 256, 580, 5, 256, 35, 19, 16, 189, 72, 361, 33, 805, 9, 68, 409, 116, 822, 407, 305, 566, 675, 224, 30, 49, 175, 305, 316, 4, 3]
+Số tham số: 47,018
+Logits: (3, 52, 826) | Attention: (3, 52, 47)
+Forward và mask hợp lệ.
+
+Ví dụ encoder Seq2Seq, câu Anh: the first of these ag - gag prosecutions , as they ' re called , was a young woman named amy meyer , and amy saw a sick cow being moved by a bulldozer outside of a slaughterhouse as she was on the public street .
+Câu Việt cần học: vụ thứ nhất của kiểu bắt bớ bịt mồm , như người ta vẫn gọi , là với một phụ nữ trẻ tên amy meyer , amy thấy người ta dùng máy xúc để đẩy một con bò bị ốm bên ngoài lò sát sinh khi đang đi ngoài phố .
+Embedding nguồn: (3, 47, 16)
+Memory encoder: (3, 47, 16)
+Hidden khởi tạo decoder: (1, 3, 16)
+8 chiều đầu của hidden: [0.028431015089154243, 0.04616605117917061, -0.35139843821525574, 0.11225242912769318, 0.1953040063381195, 0.2431359887123108, -0.07129604369401932, -0.018059182912111282]
+Epoch 01 | train loss=6.7226 | val loss=6.6959 | val token acc=0.00% | 0.5s | lưu best + last
+
+Best epoch: 1 | validation loss: 6.6959
+Model để dịch: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_smoke\20261009_081253_03b14c\best_model.pt
+Checkpoint để tiếp tục train: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_smoke\20261009_081253_03b14c\last_model.pt
+Profile: kaggle | PyTorch: 2.14.1+cpu
+Thiết bị: cpu | Mixed precision: False
+Đang dùng CPU. Bật GPU trong Settings để train cấu hình đầy đủ nhanh hơn.
+Data: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\data
+Kết quả: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_smoke\20261009_081259_d14d46
+Tiếp tục từ: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_smoke\20261009_081253_03b14c\last_model.pt
+{
+  "seed": 42,
+  "max_train_samples": 128,
+  "max_validation_samples": 24,
+  "max_test_samples": 24,
+  "validation_fraction": 0.05,
+  "max_src_tokens": 60,
+  "max_tgt_tokens": 60,
+  "src_vocab_size": 2000,
+  "tgt_vocab_size": 2000,
+  "min_freq": 1,
+  "embedding_dim": 16,
+  "hidden_dim": 16,
+  "dropout": 0.2,
+  "batch_size": 16,
+  "epochs": 2,
+  "learning_rate": 0.001,
+  "gradient_clip": 1.0,
+  "patience": 10,
+  "cpu_threads": 2,
+  "num_workers": 0,
+  "use_amp": true
+notebook_cell_16:20: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+notebook_cell_21:38: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown
+}
+train      | {'rows': 133166, 'duplicates': 1020, 'empty': 0, 'too_long': 6400} | giữ 125,746 cặp
+validation | {'rows': 1268, 'duplicates': 7, 'empty': 0, 'too_long': 68} | giữ 1,193 cặp
+test       | {'rows': 1268, 'duplicates': 7, 'empty': 0, 'too_long': 68} | giữ 1,193 cặp
+
+Validation/test trùng 1,184 câu nguồn. Tạo validation mới từ train.
+Loại cặp train trùng câu nguồn test: 137
+Số cặp sử dụng: {'train': 128, 'validation': 24, 'test': 24}
+
+Một ví dụ train:
+EN: the first of these ag - gag prosecutions , as they ' re called , was a young woman named amy meyer , and amy saw a sick cow being moved by a bulldozer outside of a slaughterhouse as she was on the public street .
+VI: vụ thứ nhất của kiểu bắt bớ bịt mồm , như người ta vẫn gọi , là với một phụ nữ trẻ tên amy meyer , amy thấy người ta dùng máy xúc để đẩy một con bò bị ốm bên ngoài lò sát sinh khi đang đi ngoài phố .
+Vocabulary: EN=814 | VI=826
+validation: EN <unk>=28.51% | VI <unk>=15.54%
+test: EN <unk>=24.52% | VI <unk>=17.09%
+Một batch: src (3, 47) | target (3, 53)
+Decoder input: [2, 769, 60, 40, 13, 544, 92, 419, 416, 592, 5, 39, 19, 16, 244, 287, 5, 10, 21, 9, 138, 105, 171, 347, 256, 580, 5, 256, 35, 19, 16, 189, 72, 361, 33, 805, 9, 68, 409, 116, 822, 407, 305, 566, 675, 224, 30, 49, 175, 305, 316, 4]
+Target labels: [769, 60, 40, 13, 544, 92, 419, 416, 592, 5, 39, 19, 16, 244, 287, 5, 10, 21, 9, 138, 105, 171, 347, 256, 580, 5, 256, 35, 19, 16, 189, 72, 361, 33, 805, 9, 68, 409, 116, 822, 407, 305, 566, 675, 224, 30, 49, 175, 305, 316, 4, 3]
+Số tham số: 47,018
+Logits: (3, 52, 826) | Attention: (3, 52, 47)
+Forward và mask hợp lệ.
+
+Ví dụ encoder Seq2Seq, câu Anh: the first of these ag - gag prosecutions , as they ' re called , was a young woman named amy meyer , and amy saw a sick cow being moved by a bulldozer outside of a slaughterhouse as she was on the public street .
+Câu Việt cần học: vụ thứ nhất của kiểu bắt bớ bịt mồm , như người ta vẫn gọi , là với một phụ nữ trẻ tên amy meyer , amy thấy người ta dùng máy xúc để đẩy một con bò bị ốm bên ngoài lò sát sinh khi đang đi ngoài phố .
+Embedding nguồn: (3, 47, 16)
+Memory encoder: (3, 47, 16)
+Hidden khởi tạo decoder: (1, 3, 16)
+8 chiều đầu của hidden: [0.028431015089154243, 0.04616605117917061, -0.35139843821525574, 0.11225242912769318, 0.1953040063381195, 0.2431359887123108, -0.07129604369401932, -0.018059182912111282]
+Tiếp tục từ epoch 2; đã giữ model tốt nhất epoch 1.
+Epoch 02 | train loss=6.6975 | val loss=6.6811 | val token acc=0.51% | 3.9s | lưu best + last
+
+Best epoch: 2 | validation loss: 6.6811
+Model để dịch: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_smoke\20261009_081259_d14d46\best_model.pt
+Checkpoint để tiếp tục train: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_smoke\20261009_081259_d14d46\last_model.pt
+Đã lấy model tại epoch: 2
+Test loss (teacher forcing)=6.6867 | perplexity=801.68 | token accuracy=0.37%
+Test: 24 cặp sau lọc/lấy mẫu.
+BLEU: BLEU = 0.00 0.0/0.0/0.0/0.0 (BP = 1.000 ratio = 2.843 hyp_len = 1464 ref_len = 515)
+chrF: chrF2 = 4.63
+BLEU signature: nrefs:1|case:mixed|eff:no|tok:13a|smooth:exp|version:2.6.0
+chrF signature: nrefs:1|case:mixed|eff:yes|nc:6|nw:0|space:no|version:2.6.0
+
+[1] EN: the next question people always ask me is, " do they retouch all the photos? "
+REF: câu hỏi tiếp theo mà người ta luôn hỏi tôi: " có phải tất cả các tấm ảnh đều được chỉnh sửa đúng không? "
+PRED: đến ngoài cực ngoài bởi vận cực đó đó từ ngoài ngoài bởi vận cực đó đó từ ngoài ngoài bởi vận cực đó đó từ ngoài ngoài bởi vận cực đó đó từ ngoài ngoài bởi vận cực đó đó từ ngoài ngoài bởi vận cực đó đó từ ngoài ngoài bởi vận cực đó đó từ ngoài ngoài bởi
+
+[2] EN: which presentation have you applauded the most this morning?
+REF: bài thuyết trình nào bạn vỗ tay nhiều nhất trong sáng nay?
+PRED: ngoài bởi biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài
+
+[3] EN: and i think the answer that they ' re looking for is, " if you are a little bit skinnier and you have shinier hair, you will be so happy and fabulous. "
+REF: tôi nghĩ rằng cái họ muốn được nghe là " nếu bạn gầy hơn một chút, và tóc bạn óng ả hơn, bạn sẽ rất hạnh phúc và sung sướng ".
+PRED: đến ngoài bởi vận cực vận cực đó đó từ ngoài ngoài bởi biết vận cực vận cực đó đó từ ngoài ngoài bởi biết vận cực vận cực đó đó từ ngoài ngoài bởi biết vận cực vận cực đó đó từ ngoài ngoài bởi biết vận cực vận cực đó đó từ ngoài ngoài bởi biết vận cực vận
+
+[4] EN: i will demonstrate for you now 10 years of accumulated model knowledge, because unlike cardio - thoracic surgeons, it can just be distilled right into - - right now.
+REF: tôi sẽ chứng minh cho các bạn - - với 10 năm kinh nghiệm tôi tích luỹ được khi làm người mẫu, vì nó không giống với bác sĩ phẫu thuật tim, nên chỉ cần một thời gian ngắn.
+PRED: ngoài biết biết biết ngoài biết biết biết ngoài biết biết biết ngoài biết biết biết ngoài biết biết biết ngoài biết biết biết ngoài biết biết biết ngoài biết biết biết ngoài biết biết biết ngoài biết biết biết ngoài biết biết biết ngoài biết biết biết ngoài biết biết biết ngoài biết biết biết ngoài biết biết biết ngoài
+
+[5] EN: so i want to encourage everyone today to get in the shot, and don ' t hesitate to go up to someone and ask, " will you take our picture? "
+REF: vì vậy hôm nay tôi muốn động viên tất cả mọi người hãy có mặt trong bức ảnh, và đừng ngần ngại bước tới chỗ một ai đó, và hỏi, " bạn chụp ảnh giúp chúng tôi nhé? "
+PRED: ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài
+EN: I am very happy to be here today.
+VI: ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài
+Token EN ngoài vocabulary: ['happy']
+Checkpoint: E:\LeVietThanh1412-NCKH\Encode_Decode_NLP\tmp\s2s_smoke\20261009_081259_d14d46\best_model.pt
+Dịch từ model đã tải: ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài biết biết ngoài
+Checkpoint tải lại cho cùng kết quả.
+
+SMOKE TEST PASSED
+{
+  "training_epochs_checked": [
+    2,
+    1,
+    "resume_to_2"
+  ],
+  "samples": {
+    "train": 128,
+    "validation": 24,
+    "test": 24
+  },
+  "training_loss": [
+    6.722584875991252,
+    6.697484537228172
+  ],
+  "resume_max_weight_difference": 0.0,
+  "kaggle_path_and_profile": "passed",
+  "padding_and_causal_decoder": "passed",
+  "inference_checkpoint_round_trip": "passed",
+  "bleu_chrf_and_predictions_export": "passed",
+  "cuda_tested": false,
+  "run_directory": "E:\\LeVietThanh1412-NCKH\\Encode_Decode_NLP\\tmp\\s2s_smoke\\20261009_081259_d14d46"
+}
